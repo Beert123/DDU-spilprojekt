@@ -29,7 +29,6 @@ class Platform {
     }
 
     if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x < xpos+sizex && p.location.x > xpos+sizex-10) {
-      println("NOW");
       p.location.x = xpos+sizex;
     }
 
@@ -42,7 +41,7 @@ class Platform {
 
     // headbutt
     if (p.location.y < ypos+sizey && p.location.y > ypos && p.location.x+30 > xpos && p.location.x < xpos+sizex) {
-      p.location.y = ypos+sizey+8;
+      p.velocity.y = p.velocity.y*-0.7;
     }
   }
 }

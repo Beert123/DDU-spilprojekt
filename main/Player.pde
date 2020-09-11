@@ -60,8 +60,8 @@ class Player {
   void jump() {
     if (isOnPlatform) {
       println("Start: "+groundY);
-      location.y = location.y-0.2;
-      velocity.set(0, -10);
+      location.y = location.y-1;
+      velocity.set(0, -12);
       isJumping = false;
       isMidAir = true;
       isOnPlatform = false;
