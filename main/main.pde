@@ -1,6 +1,6 @@
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 Player player1 = new Player(400, 500, 1, 30, 60);
-
+ArrayList<Maal> maal = new ArrayList<Maal>();
 PVector gravity = new PVector(0, 0.3);
 
 void setup() {
@@ -11,6 +11,7 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
   platforms.add(new Platform(470, 500, 0, 1, 200, 50));
+  maal.add(new Maal(100,500,50,50));
 }
 
 void draw() {
@@ -25,6 +26,7 @@ void draw() {
   player1.applyForce(gravity);
   player1.update();
   player1.display();
+  timer();
 }
 
 void keyPressed() {
@@ -51,3 +53,9 @@ void handlePress(int k, boolean b) {
     break;
   }
 }
+
+void timer(){
+int m = millis();
+textSize(50);
+text(m/1000,40,40);
+  }
