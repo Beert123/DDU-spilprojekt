@@ -31,5 +31,4 @@ class Platform{
       p.location.x = p.w+ypos;
     }
   }
-  
 }
