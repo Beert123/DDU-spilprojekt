@@ -4,7 +4,7 @@ class Player {
   PVector acceleration;
   PVector realLocation;
   int type, h, w; // 1 is water, 2 is fire
-  boolean isRight, isLeft, isJumping, isDucking, isMidAir;
+  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform;
 
   float groundY;
 
@@ -21,11 +21,12 @@ class Player {
     isLeft = false;
     isMidAir = false;
     isJumping = false;
+    isOnPlatform = true;
 
     h = hoejde;
     w = bredde;
 
-    groundY = y;
+    groundY = 650;
 
     if (type == 1) {
       playerColor = color(0, 0, 255);
@@ -57,12 +58,12 @@ class Player {
   }
 
   void jump() {
-    if (!isMidAir) {
-      groundY = location.y;
+    if (!isMidAir || isOnPlatform) {
       println("Start: "+groundY);
       velocity.set(0, -12);
       isJumping = false;
       isMidAir = true;
+      isOnPlatform = false;
       println("Jumped!");
     }
   }
@@ -70,7 +71,6 @@ class Player {
   void applyForce(PVector f) {
     if (isMidAir) {
       acceleration.add(f);
-      println("GRAVITY!!!");
     }
   }
 
@@ -84,7 +84,10 @@ class Player {
       location.y = groundY;
       velocity.set(0, 0);
     }
+    
+    if (location.y < groundY) {
+      isMidAir = true;
+    }
 
-    println(location.y);
   }
 }
