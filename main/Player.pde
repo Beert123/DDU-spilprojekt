@@ -60,7 +60,7 @@ class Player {
     if (!isMidAir) {
       groundY = location.y;
       println("Start: "+groundY);
-      velocity.set(0, -6);
+      velocity.set(0, -12);
       isJumping = false;
       isMidAir = true;
       println("Jumped!");
