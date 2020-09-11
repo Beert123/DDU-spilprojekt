@@ -1,8 +1,6 @@
 class Maal{
- PVector location; 
- PVector bigness;
-  
- 
+ PVector location = new PVector(); 
+ PVector bigness= new PVector();
   
   Maal(float x, float y, float bigX, float bigY){
     location.x = x;
@@ -11,7 +9,7 @@ class Maal{
     bigness.y =bigY;
   }
   void display(){
-   
+    fill(0,0,125);
     rect(location.x ,location.y,bigness.x,bigness.y);
     
   }
