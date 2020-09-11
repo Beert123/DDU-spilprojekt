@@ -23,7 +23,7 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
 
-  maal.add(new Maal(100,500,50,50));
+  //maal.add(new Maal(100,500,50,50));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
   
@@ -50,6 +50,7 @@ void draw() {
   player1.applyForce(gravity);
   player1.update();
   player1.display();
+  player1.checkEdges();
   timer();
 }
 

@@ -46,13 +46,13 @@ class Player {
   }
 
   void moveLeft() {
-    if (location.x >= 50) {
+    if (location.x >= 2) {
       location.add(-4, 0);
     }
   }
 
   void moveRight() {
-    if (location.y <= width-50) {
+    if (location.x <= width - 10) {
       location.add(4, 0);
     }
   }
@@ -93,6 +93,13 @@ class Player {
     if (location.y < groundY) {
       isMidAir = true;
     }
-
+  }
+  void checkEdges(){
+    if (location.y > 800) {
+      location.y = 800;
+    }else if (location.y < 0) {
+      location.y = 0;
+      velocity.y *= -1;
+    }
   }
 }
