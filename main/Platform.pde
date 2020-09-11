@@ -18,7 +18,7 @@ class Platform {
   void display() {
     ymove = amplitude * cos(TWO_PI * frameCount/period);
     stroke(0);
-    fill(139,69,19);
+    fill(139, 69, 19);
     rect(xpos, ypos+ymove, sizex, sizey);
   }
   void collision(Player p, int i) {
@@ -41,7 +41,7 @@ class Platform {
 
     // headbutt
     if (p.location.y < ypos+sizey && p.location.y > ypos && p.location.x+30 > xpos && p.location.x < xpos+sizex) {
-      p.velocity.y = p.velocity.y*-0.7;
+      p.velocity.y = p.velocity.y*-1;
     }
   }
 }

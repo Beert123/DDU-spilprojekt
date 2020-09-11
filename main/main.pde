@@ -4,10 +4,10 @@ Player player1 = new Player(100, 500, 1, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 
 //LEVEL 1
-int[] e1 = {1,0,1};
+int[] e1 = {1,0,1,2,1};
 int[] e2 = {1,0,1};
 int[] e3 = {1};
-int[] w1 = {400, 200, 400};
+int[] w1 = {400, 200, 100, 100, 200};
 int[] w2 = {200, 200, 600};
 int[] w3 = {1000};
 //END LEVEL 1
@@ -16,7 +16,7 @@ PVector gravity = new PVector(0, 0.25);
 
 void setup() {
   size(1000, 800);
-  pixelDensity(2);
+  //pixelDensity(2);
   smooth();
 
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
@@ -31,12 +31,12 @@ void setup() {
 void draw() {
   background(255);
 
-  /*for (int i = 0; i < liquids.size(); i++){
+  for (int i = 0; i < liquids.size(); i++){
     Liquid l = liquids.get(i);
     
     l.display();
     l.collision(player1);
-  }*/
+  }
   
   for (int i = 0; i < platforms.size(); i++) {
     Platform p = platforms.get(i);

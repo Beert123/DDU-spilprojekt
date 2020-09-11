@@ -80,8 +80,8 @@ class Player {
     location.add(velocity);
     acceleration.mult(0);
     
-    if (velocity.y > 8) {
-      velocity.y = 8;
+    if (velocity.y > 6) {
+      velocity.y = 6;
     }
 
     if (location.y > groundY) {

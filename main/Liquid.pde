@@ -19,6 +19,7 @@ class Liquid {
     noStroke();
     fill(0, 0, 255);
     rect(x, y, w, hl);
+    stroke(0);
     fill(0);
     rect(x, yg, w, hg);
   }
@@ -29,6 +30,15 @@ class Liquid {
     }
     if (p.location.x+p.h> x && p.location.x+p.h< x+w && p.location.y> y && p.location.y<y+hl) {
       println("YEEAAHH2");
+    }
+    if (p.location.y+p.h > yg && p.location.y <= yg+8 && p.location.x+p.w > x && p.location.x < x+w && p.location.y+p.h < yg+8) {
+      p.location.y = yg-60;
+      p.isOnPlatform = true;
+      p.isMidAir = false;
+      p.velocity.set(0, 0);
+    }
+    if (p.location.y < yg+hg && p.location.y > yg && p.location.x+30 > x && p.location.x < x+w) {
+      p.velocity.y = p.velocity.y*-0.7;
     }
   }
 }
