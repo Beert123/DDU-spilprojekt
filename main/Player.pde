@@ -47,29 +47,30 @@ class Player {
 
   void moveLeft() {
     if (location.x >= 50) {
-      location.add(-8, 0);
+      location.add(-4, 0);
     }
   }
 
   void moveRight() {
     if (location.y <= width-50) {
-      location.add(8, 0);
+      location.add(4, 0);
     }
   }
 
   void jump() {
-    if (!isMidAir || isOnPlatform) {
+    if (isOnPlatform) {
       println("Start: "+groundY);
+      location.y = location.y-1;
       velocity.set(0, -12);
       isJumping = false;
       isMidAir = true;
       isOnPlatform = false;
-      println("Jumped!");
+      //println("Jumped!");
     }
   }
 
   void applyForce(PVector f) {
-    if (isMidAir) {
+    if (!isOnPlatform || isMidAir) {
       acceleration.add(f);
     }
   }
@@ -78,6 +79,10 @@ class Player {
     velocity.add(acceleration);
     location.add(velocity);
     acceleration.mult(0);
+    
+    if (velocity.y > 6) {
+      velocity.y = 6;
+    }
 
     if (location.y > groundY) {
       isMidAir = false;
