@@ -59,12 +59,12 @@ class Player {
 
   void jump() {
     if (!isMidAir || isOnPlatform) {
-      println("Start: "+groundY);
+      //println("Start: "+groundY);
       velocity.set(0, -12);
       isJumping = false;
       isMidAir = true;
       isOnPlatform = false;
-      println("Jumped!");
+      //println("Jumped!");
     }
   }
 
