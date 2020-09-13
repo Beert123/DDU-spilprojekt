@@ -24,7 +24,7 @@ class LevelGenerator {
         platforms.add(new Platform(x2, 400, 0, 1, w2[i], 40));
         break;
       case 2:
-        liquids.add(new Liquid(x2, 180, w1[i], 40, 1));
+        liquids.add(new Liquid(x2, 180, w2[i], 40, 1));
         break;
       }
       x2 = x2+w2[i];
@@ -35,7 +35,7 @@ class LevelGenerator {
         platforms.add(new Platform(x3, 650, 0, 1, w3[i], 40));
         break;
       case 2:
-        liquids.add(new Liquid(x3, 180, w1[i], 40, 1));
+        liquids.add(new Liquid(x3, 180, w3[i], 40, 1));
         break;
       }
       x3 = x3+w3[i];
