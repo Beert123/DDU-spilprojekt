@@ -9,6 +9,7 @@ ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
 ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
+ArrayList<Drip> drips = new ArrayList<Drip>();
 Player player1 = new Player(100, 650, 1, 30, 60);
 Player player2 = new Player(50, 650, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
@@ -56,7 +57,8 @@ void setup() {
 
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
-
+  
+  drips.add(new Drip(200, 320, 20, 1, 400));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
@@ -82,6 +84,12 @@ void draw() {
     n.display();
     n.collision(player1);
     n.collision(player2);
+  }
+  for (int i = 0; i < drips.size();i++){
+    Drip d = drips.get(i);
+    
+    d.display();
+    d.update();
   }
   for (int i = 0; i < liquids.size(); i++) {
     Liquid l = liquids.get(i);

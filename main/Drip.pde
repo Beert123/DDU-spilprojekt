@@ -3,16 +3,18 @@ class Drip {
   PVector velocity;
   PVector acceleration;
 
-  float diameter, state;
+  float diameter, state,x,y;
 
   int etage;
 
   boolean splash;
 
-  Drip(float x, float y, float d, float s, int e) {
+  Drip(float x_, float y_, float d, float s, int e) {
+    x = x_;
+    y = y_;
     location = new PVector(x, y);
     velocity = new PVector();
-    acceleration = new PVector(0, 0.1);
+    acceleration = new PVector(0, 1);
     diameter = d;
     state = s;
     etage = e;
@@ -40,30 +42,12 @@ class Drip {
     location.add(velocity);
     acceleration.mult(0);
 
-    if (etage == 1) {
-      if (location.y > 110) {
-        splash = true;
-      }
+    if (location.y+diameter/2 > etage) {
+      splash = true;
     }
-    if (etage == 2) {
-      if (location.y > 280) {
-        splash = true;
-      }
-    }
-    if (etage == 3) {
-      if (location.y > 420) {
-        splash = true;
-      }
-    }
-    if (etage == 4) {
-      if (location.y > 600) {
-        splash = true;
-      }
-    }
-    if (etage == 5) {
-      if (location.y > 760) {
-        splash = true;
-      }
+    if(splash){
+      location.set(x,y);
+      splash = false;
     }
   }
 }
