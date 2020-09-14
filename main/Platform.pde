@@ -21,7 +21,7 @@ class Platform {
 
   void display() {
     ymove = amplitude * cos(TWO_PI * frameCount/period);
-    stroke(0);
+    noStroke();
     fill(139, 69, 19);
     rect(xpos, ypos+ymove, sizex, sizey);
 
