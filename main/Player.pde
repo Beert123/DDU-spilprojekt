@@ -7,7 +7,7 @@ class Player {
   boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive;
 
   float groundY;
-
+  
   color playerColor;
 
   Player(float x, float y, int t, int bredde, int hoejde) {
