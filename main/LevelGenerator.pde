@@ -1,28 +1,28 @@
 class LevelGenerator {
   int level;
-  int x1, x2, x3;
+  int x1, x2, x3, x4, x5;
 
   LevelGenerator(int l) {
     level = l;
   }
 
-  void generateLevel(int[] e1, int[] e2, int[] e3, int[] w1, int[] w2, int[] w3) {
+  void generateLevel(int[] e1, int[] e2, int[] e3, int[] e4, int[] e5, int[] w1, int[] w2, int[] w3, int[] w4, int[] w5, int[] h1, int[] h2, int[] h3, int[] h4, int[] h5, int[] y1, int[] y2, int[] y3, int[] y4, int[] y5) {
     for (int i = 0; i < e1.length; i++) {
       switch(e1[i]) {
       case 1:
-        platforms.add(new Platform(x1, 180, 0, 1, w1[i], 40, false));
+        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], false));
         break;
       case 2:
-        liquids.add(new Liquid(x1, 180, w1[i], 40, 1));
+        liquids.add(new Liquid(x1, y1[i], w1[i], h1[i], 1));
         break;
       case 3:
-        liquids.add(new Liquid(x1, 180, w1[i], 40, 2));
+        liquids.add(new Liquid(x1, y1[i], w1[i], h1[i], 2));
         break;
       case 4:
-        liquids.add(new Liquid(x1, 180, w1[i], 40, 3));
+        liquids.add(new Liquid(x1, y1[i], w1[i], h1[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x1, 180, 0, 1, w1[i], 40, true));
+        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], true));
         break;
       }
       x1 = x1+w1[i];
@@ -30,19 +30,19 @@ class LevelGenerator {
     for (int i = 0; i < e2.length; i++) {
       switch(e2[i]) {
       case 1:
-        platforms.add(new Platform(x2, 400, 0, 1, w2[i], 40, false));
+        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], false));
         break;
       case 2:
-        liquids.add(new Liquid(x2, 400, w2[i], 40, 1));
+        liquids.add(new Liquid(x2, y2[i], w2[i], h2[i], 1));
         break;
       case 3:
-        liquids.add(new Liquid(x2, 400, w2[i], 40, 2));
+        liquids.add(new Liquid(x2, y2[i], w2[i], h2[i], 2));
         break;
       case 4:
-        liquids.add(new Liquid(x2, 400, w2[i], 40, 3));
+        liquids.add(new Liquid(x2, y2[i], w2[i], h2[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x2, 400, 0, 1, w2[i], 40, true));
+        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], true));
         break;
       }
       x2 = x2+w2[i];
@@ -50,25 +50,71 @@ class LevelGenerator {
     for (int i = 0; i < e3.length; i++) {
       switch(e3[i]) {
       case 1:
-        platforms.add(new Platform(x3, 650, 0, 1, w3[i], 40, false));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false));
         break;
       case 2:
-        liquids.add(new Liquid(x3, 650, w3[i], 40, 1));
+        liquids.add(new Liquid(x3, y3[i], w3[i], h3[i], 1));
         break;
       case 3:
-        liquids.add(new Liquid(x3, 650, w3[i], 40, 2));
+        liquids.add(new Liquid(x3, y3[i], w3[i], h3[i], 2));
         break;
       case 4:
-        liquids.add(new Liquid(x3, 650, w3[i], 40, 3));
+        liquids.add(new Liquid(x3, y3[i], w3[i], h3[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x3, 650, 0, 1, w3[i], 40, true));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], true));
         break;
       case 6:
-        platforms.add(new Platform(x3, 650-40, 0, 1, w3[i], 80, false));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false));
         break;
       }
       x3 = x3+w3[i];
+    }
+    for (int i = 0; i < e4.length; i++) {
+      switch(e4[i]) {
+      case 1:
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false));
+        break;
+      case 2:
+        liquids.add(new Liquid(x4, y4[i], w4[i], h4[i], 1));
+        break;
+      case 3:
+        liquids.add(new Liquid(x4, y4[i], w4[i], h4[i], 2));
+        break;
+      case 4:
+        liquids.add(new Liquid(x4, y4[i], w4[i], h4[i], 3));
+        break;
+      case 5:
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], true));
+        break;
+      case 6:
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false));
+        break;
+      }
+      x4 = x4+w4[i];
+    }
+    for (int i = 0; i < e5.length; i++) {
+      switch(e5[i]) {
+      case 1:
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false));
+        break;
+      case 2:
+        liquids.add(new Liquid(x5, y5[i], w5[i], h5[i], 1));
+        break;
+      case 3:
+        liquids.add(new Liquid(x5, y5[i], w5[i], h5[i], 2));
+        break;
+      case 4:
+        liquids.add(new Liquid(x5, y5[i], w5[i], h5[i], 3));
+        break;
+      case 5:
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], true));
+        break;
+      case 6:
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false));
+        break;
+      }
+      x5 = x5+w5[i];
     }
   }
 }

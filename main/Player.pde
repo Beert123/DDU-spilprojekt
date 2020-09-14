@@ -27,7 +27,7 @@ class Player {
     h = hoejde;
     w = bredde;
 
-    groundY = 650;
+    groundY = 760;
 
     if (type == 1) {
       playerColor = color(0, 0, 255);
@@ -71,7 +71,7 @@ class Player {
       println("Start: "+groundY);
       location.y = location.y-1;
       if (hasBoost) {
-        velocity.set(0, -12);
+        velocity.set(0, -10);
       } else {
         velocity.set(0, -7);
       }
@@ -115,7 +115,7 @@ class Player {
 
   void revive() {
     
-    location.set(100,500);
+    location.set(100,650);
     isAlive = true;
   }
 
