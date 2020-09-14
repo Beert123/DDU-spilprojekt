@@ -45,7 +45,7 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
 
-  maal.add(new Maal(200,650,50,50));
+ // maal.add(new Maal(200,650,50,50,1));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
   
