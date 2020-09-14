@@ -58,7 +58,7 @@ class Player {
   }
 
   void jump() {
-    if (isOnPlatform) {
+    if (velocity.y == 0) {
       println("Start: "+groundY);
       location.y = location.y-1;
       velocity.set(0, -12);
