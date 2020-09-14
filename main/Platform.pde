@@ -24,14 +24,15 @@ class Platform {
   void collision(Player p, int i) {
     // println("Checking on platform: "+i);
     // is on the platform!
+// fra siden
     if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x+p.w > xpos && p.location.x+p.w < xpos+10) {
       p.location.x = xpos-p.w;
     }
-
+// fra siden
     if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x < xpos+sizex && p.location.x > xpos+sizex-10) {
       p.location.x = xpos+sizex;
     }
-
+//oppe fra og ned
     if (p.location.y+p.h > ypos && p.location.y <= ypos+8 && p.location.x+p.w > xpos && p.location.x < xpos+sizex && p.location.y+p.h < ypos+8) {
       p.location.y = ypos-60;
       p.isOnPlatform = true;
