@@ -1,6 +1,7 @@
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
+ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
 Player player1 = new Player(100, 500, 1, 30, 60);
 Player player2 = new Player(100, 500, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
@@ -27,6 +28,7 @@ void setup() {
   //maal.add(new Maal(100,500,50,50));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
+  diamonds.add(new Diamond(250, 600, 20, 20 ,1));
   
   gen.generateLevel(e1, e2, e3, w1, w2, w3);
 }
@@ -42,7 +44,13 @@ void draw() {
     l.collision(player1);
     l.collision(player2);
   }
-  
+  for (int i = 0; i < diamonds.size(); i++){
+    Diamond d = diamonds.get(i);
+    
+    d.display();
+    d.collision(player1);
+    d.collision(player2);
+  }
   for (int i = 0; i < platforms.size(); i++) {
     Platform p = platforms.get(i);
 
