@@ -24,17 +24,23 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
 
-  //maal.add(new Maal(100,500,50,50));
+//  maal.add(new Maal(200,550,50,50));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
   
   gen.generateLevel(e1, e2, e3, w1, w2, w3);
-}
+  }
 
 
 void draw() {
   background(255);
 
+  for (int m = 0; m <maal.size(); m++){
+    Maal n = maal.get(m);
+    n.display();
+    n.collision(player1);
+    n.collision(player2); 
+  }
   for (int i = 0; i < liquids.size(); i++){
     Liquid l = liquids.get(i);
     
@@ -50,15 +56,15 @@ void draw() {
     platforms.get(i).collision(player1, i);
     platforms.get(i).collision(player2, i);
   }
-  player1.applyForce(gravity);
-  player1.update();
-  player1.display();
-  player1.checkEdges();
-  player2.applyForce(gravity);
-  player2.update();
-  player2.display();
-  player2.checkEdges();
-  timer();
+    player1.applyForce(gravity);
+    player1.update();
+    player1.display();
+    player1.checkEdges();
+    player2.applyForce(gravity);
+    player2.update();
+    player2.display();
+    player2.checkEdges();
+    timer();
   
   if(player1.isAlive == false || player2.isAlive == false) {
   player1.revive();
