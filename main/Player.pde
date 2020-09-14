@@ -114,6 +114,7 @@ class Player {
   }
 
   void revive() {
+    location.set(100,500);
     isAlive = true;
   }
 
