@@ -2,8 +2,8 @@ ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
 ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
-Player player1 = new Player(100, 500, 1, 30, 60);
-Player player2 = new Player(100, 500, 2, 30, 60);
+Player player1 = new Player(100, 650, 1, 30, 60);
+Player player2 = new Player(100, 650, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 
 //LEVEL 1
