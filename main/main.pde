@@ -76,6 +76,18 @@ void handlePress(int k, boolean b) {
   case +'D':
     player1.isRight = b;
     break;
+    case +'I':
+    player2.isJumping = b;
+    break;
+  case +'K':
+    player2.isDucking = b;
+    break;
+  case +'J':
+    player2.isLeft = b;
+    break;
+  case +'L':
+    player2.isRight = b;
+    break;
   }
 }
 
