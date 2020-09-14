@@ -2,6 +2,7 @@ ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
 Player player1 = new Player(100, 500, 1, 30, 60);
+Player player2 = new Player(100, 500, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 
 //LEVEL 1
@@ -10,7 +11,7 @@ int[] e2 = {1,0,1};
 int[] e3 = {1,3,4,1};
 int[] w1 = {400, 200, 100, 100, 200};
 int[] w2 = {200, 200, 600};
-int[] w3 = {500, 100, 100, 400};
+int[] w3 = {400, 100, 100, 400};
 //END LEVEL 1
 
 PVector gravity = new PVector(0, 0.25);
@@ -46,11 +47,16 @@ void draw() {
 
     platforms.get(i).display();
     platforms.get(i).collision(player1, i);
+    platforms.get(i).collision(player2, i);
   }
   player1.applyForce(gravity);
   player1.update();
   player1.display();
   player1.checkEdges();
+  player2.applyForce(gravity);
+  player2.update();
+  player2.display();
+  player2.checkEdges();
   timer();
 }
 
@@ -80,7 +86,7 @@ void handlePress(int k, boolean b) {
 }
 
 void timer(){
-int m = millis();
-textSize(50);
-text(m/1000,40,40);
+    int m = millis();
+    textSize(50);
+    text(m/1000,40,40);
   }
