@@ -1,6 +1,6 @@
 class Platform {
   PVector location;
-  float xpos, ypos, ymove;
+  float xpos, ypos, xmove;
   float sizex, sizey;
   float period;
   float amplitude;
@@ -20,10 +20,10 @@ class Platform {
 }
 
   void display() {
-    ymove = amplitude * cos(TWO_PI * frameCount/period);
+    xmove = amplitude * cos(TWO_PI * frameCount/period);
     noStroke();
     fill(139, 69, 19);
-    rect(xpos, ypos+ymove, sizex, sizey);
+    rect(xpos+xmove, ypos, sizex, sizey);
 
     if (booster) {
       fill(255, 223, 0);
@@ -39,15 +39,15 @@ class Platform {
     // println("Checking on platform: "+i);
     // is on the platform!
 // fra siden
-    if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x+p.w > xpos && p.location.x+p.w < xpos+10) {
-      p.location.x = xpos-p.w;
+    if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x+p.w > xpos+xmove && p.location.x+p.w+xmove < xpos+10+xmove) {
+      p.location.x = xpos-p.w+xmove;
     }
 // fra siden
-    if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x < xpos+sizex && p.location.x > xpos+sizex-10) {
-      p.location.x = xpos+sizex;
+    if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x < xpos+sizex+xmove && p.location.x+xmove > xpos+sizex-10+xmove) {
+      p.location.x = xpos+sizex+xmove;
     }
 //oppe fra og ned
-    if (p.location.y+p.h > ypos && p.location.y <= ypos+8 && p.location.x+p.w > xpos && p.location.x < xpos+sizex && p.location.y+p.h < ypos+8) {
+    if (p.location.y+p.h > ypos && p.location.y <= ypos+8 && p.location.x+p.w > xmove+xpos && p.location.x+xmove < xpos+sizex+xmove && p.location.y+p.h < ypos+8) {
       p.location.y = ypos-60;
       p.isOnPlatform = true;
       p.isMidAir = false;
@@ -60,7 +60,7 @@ class Platform {
     }
 
     // headbutt
-    if (p.location.y < ypos+sizey && p.location.y > ypos && p.location.x+30 > xpos && p.location.x < xpos+sizex) {
+    if (p.location.y < ypos+sizey && p.location.y > ypos && p.location.x+30 > xpos+xmove && p.location.x < xpos+sizex+xmove) {
       p.velocity.y = p.velocity.y*-1;
     }
   }

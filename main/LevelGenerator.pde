@@ -113,6 +113,9 @@ class LevelGenerator {
       case 6:
         platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false));
         break;
+      case 7:
+        platforms.add(new Platform(x5, y5[i], 100, 240, w5[i], h5[i], false));
+        break;
       }
       x5 = x5+w5[i];
     }
