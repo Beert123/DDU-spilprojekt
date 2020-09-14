@@ -4,23 +4,36 @@ class Platform {
   float sizex, sizey;
   float period;
   float amplitude;
+  boolean booster;
+  float timeToBoost, isBox;
 
   int player;
 
-  Platform(float x, float y, float a, float p, float sx, float sy) {
+  Platform(float x, float y, float a, float p, float sx, float sy, boolean boost) {
     amplitude = a;
     period = p;
     xpos = x;
     ypos = y;
     sizex = sx;
     sizey = sy;
-  }
+    booster = boost;
+}
+
   void display() {
     ymove = amplitude * cos(TWO_PI * frameCount/period);
     stroke(0);
     fill(139, 69, 19);
     rect(xpos, ypos+ymove, sizex, sizey);
+
+    if (booster) {
+      fill(255, 223, 0);
+      arc(xpos+sizex/2, ypos+sizey/2, 15, 15, 0, 2*PI-timeToBoost, PIE);
+    }
+    
+    if (timeToBoost > 0) timeToBoost = timeToBoost - 0.02;
+    println(timeToBoost);
   }
+
   void collision(Player p, int i) {
     // println("Checking on platform: "+i);
     // is on the platform!
@@ -38,6 +51,11 @@ class Platform {
       p.isOnPlatform = true;
       p.isMidAir = false;
       p.velocity.set(0, 0);
+
+      if (booster && timeToBoost < 0.01) {
+        p.hasBoost = true;
+        timeToBoost = 2*PI;
+      }
     }
 
     // headbutt
