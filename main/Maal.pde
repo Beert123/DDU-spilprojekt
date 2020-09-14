@@ -8,11 +8,16 @@ class Maal {
     location.x = x;
     location.y =y;
     bigness.x = bigX;
-    bigness.y =bigY;
+    bigness.y = bigY;
     state = s;
   }
   void display() {
-    fill(0, 0, 125);
+    if (state == 1) {
+      fill(0, 50, 255);
+    } else {
+      fill(255, 50, 0);
+    }
+
     rect(location.x, location.y, bigness.x, bigness.y);
 
 
