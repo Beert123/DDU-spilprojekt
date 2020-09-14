@@ -3,7 +3,7 @@ import processing.net.*;
 Server s; 
 Client c;
 String input;
-int data[];
+float data[];
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -50,6 +50,7 @@ void setup() {
   size(1000, 800);
   //pixelDensity(2);
   smooth();
+  //frameRate(2);
 
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
@@ -74,8 +75,8 @@ void setup() {
 
 void draw() {
   background(255);
-  println(player1.point);
-  println(player2.point);
+  //println(player1.point);
+  //println(player2.point);
 
   for (int m = 0; m <maal.size(); m++) {
     Maal n = maal.get(m);
@@ -125,7 +126,8 @@ void draw() {
     }
   }
 
-  compileNetworkData();
+  sendNetworkData();
+  recieveNetworkData();
 }
 
 void keyPressed() {
@@ -175,24 +177,33 @@ void recieveNetworkData() {
     if (c != null) {
       input = c.readString(); 
       input = input.substring(0, input.indexOf("\n"));  // Only up to the newline
-      data = int(split(input, ' '));  // Split values into an array
+      data = float(split(input, ' '));  // Split values into an array
       // Draw line using received coords
       stroke(0);
-      p1.location.x = data[0];
-      p1.location.y = data[1];
-      p2.location.x = data[2];
-      p2.location.y = data[3];
+
+      println("RECIEVE: "+input);
+
+      if (data != null) {
+        if (abs(data[0] - p2.location.x) < 50) {
+          p2.location.x = data[0];
+          p2.location.y = data[1];
+        }
+      }
     }
   } else {
     if (c.available() > 0) { 
       input = c.readString(); 
       input = input.substring(0, input.indexOf("\n"));  // Only up to the newline
-      data = int(split(input, ' '));  // Split values into an array
+      data = float(split(input, ' '));  // Split values into an array
       // Draw line using received coords
-      p1.location.x = data[0];
-      p1.location.y = data[1];
-      p2.location.x = data[2];
-      p2.location.y = data[3];
+
+      println("RECIEVE: "+data[0]+","+data[1]);
+      if (data != null) {
+        if (abs(data[0] - p1.location.x) < 50) {
+          p1.location.x = data[0];
+          p1.location.y = data[1];
+        }
+      }
     }
   }
 }
@@ -202,9 +213,9 @@ void sendNetworkData() {
   Player p2 = player2;
 
   if (server) {
-    s.write(p1.location.x + " " + p1.location.y + " " + p2.location.x + " " + p2.location.y + "\n");
+    s.write(p1.location.x + " " + p1.location.y + "\n");
   } else {
-    c.write(p1.location.x + " " + p1.location.y + " " + p2.location.x + " " + p2.location.y + "\n");
+    c.write(p2.location.x + " " + p2.location.y + "\n");
   }
 }
 
