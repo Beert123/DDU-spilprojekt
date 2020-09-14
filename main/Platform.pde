@@ -31,7 +31,7 @@ class Platform {
     }
     
     if (timeToBoost > 0) timeToBoost = timeToBoost - 0.02;
-    println(timeToBoost);
+    //println(timeToBoost);
   }
 
   void collision(Player p, int i) {

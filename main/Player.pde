@@ -3,7 +3,7 @@ class Player {
   PVector velocity;
   PVector acceleration;
   PVector realLocation;
-  int type, h, w; // 1 is water, 2 is fire
+  int type, point, h, w; // 1 is water, 2 is fire
   boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive, hasBoost;
 
   float groundY;
@@ -27,6 +27,7 @@ class Player {
     h = hoejde;
     w = bredde;
 
+    point = 0;
     groundY = 650;
 
     if (type == 1) {
@@ -68,7 +69,7 @@ class Player {
 
   void jump() {
     if (velocity.y == 0 && isOnPlatform) {
-      println("Start: "+groundY);
+      //println("Start: "+groundY);
       location.y = location.y-1;
       if (hasBoost) {
         velocity.set(0, -12);

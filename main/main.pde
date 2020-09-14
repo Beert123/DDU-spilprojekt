@@ -29,6 +29,9 @@ void setup() {
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
   diamonds.add(new Diamond(250, 600, 20, 20 ,1));
+  diamonds.add(new Diamond(300, 600, 20, 20 ,1));
+  diamonds.add(new Diamond(350, 600, 20, 20 ,2));
+  diamonds.add(new Diamond(400, 600, 20, 20 ,2));
   
   gen.generateLevel(e1, e2, e3, w1, w2, w3);
 }
@@ -36,6 +39,8 @@ void setup() {
 
 void draw() {
   background(255);
+  println(player1.point);
+  println(player2.point);
 
   for (int i = 0; i < liquids.size(); i++){
     Liquid l = liquids.get(i);
@@ -50,6 +55,8 @@ void draw() {
     d.display();
     d.collision(player1);
     d.collision(player2);
+    //d.pointCollect(player1);
+    //d.pointCollect(player2);
   }
   for (int i = 0; i < platforms.size(); i++) {
     Platform p = platforms.get(i);
@@ -71,6 +78,10 @@ void draw() {
   if(player1.isAlive == false || player2.isAlive == false) {
   player1.revive();
   player2.revive();
+  for(int i = 0; i < diamonds.size(); i++){
+    Diamond d = diamonds.get(i);
+    d.reset();
+  }
   }
 }
 
