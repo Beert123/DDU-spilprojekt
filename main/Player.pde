@@ -16,7 +16,8 @@ class Player {
     realLocation = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-
+    
+    isAlive = true;
     isRight = false;
     isLeft = false;
     isMidAir = false;
