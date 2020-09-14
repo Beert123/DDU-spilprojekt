@@ -28,7 +28,7 @@ class Liquid {
     {
       println("YEEAAHH1");
     }
-    if (p.location.x+p.h> x && p.location.x+p.h< x+w && p.location.y> y && p.location.y<y+hl) {
+    if (p.location.x> x && p.location.x< x+w && p.location.y+p.h> y && p.location.y+p.h<y+hl) {
       println("YEEAAHH2");
     }
     if (p.location.y+p.h > yg && p.location.y <= yg+8 && p.location.x+p.w > x && p.location.x < x+w && p.location.y+p.h < yg+8) {
