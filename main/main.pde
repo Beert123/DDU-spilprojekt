@@ -15,7 +15,7 @@ Player player2 = new Player(50, 650, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 DiamondsGenerator genD = new DiamondsGenerator(1);
 
-boolean server = true;
+boolean server = false;
 
 //LEVEL 1
 int[] e1 = {0, 1, 1, 1};
