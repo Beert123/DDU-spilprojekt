@@ -66,7 +66,7 @@ void setup() {
   if (server) {
     s = new Server(this, 12345);  // Start a simple server on a port
   } else {
-    c = new Client(this, "127.0.0.1", 12345); // Replace with your server’s IP and port
+    c = new Client(this, "172.20.10.4", 12345); // Replace with your server’s IP and port
   }
 }
 
@@ -74,8 +74,8 @@ void setup() {
 
 void draw() {
   background(255);
-  println(player1.point);
-  println(player2.point);
+  //println(player1.point);
+  //println(player2.point);
 
   for (int m = 0; m <maal.size(); m++) {
     Maal n = maal.get(m);
@@ -125,7 +125,8 @@ void draw() {
     }
   }
 
-  compileNetworkData();
+  sendNetworkData();
+  recieveNetworkData();
 }
 
 void keyPressed() {
@@ -204,6 +205,7 @@ void sendNetworkData() {
   if (server) {
     s.write(p1.location.x + " " + p1.location.y + " " + p2.location.x + " " + p2.location.y + "\n");
   } else {
+    println(p1.location.x + " " + p1.location.y + " " + p2.location.x + " " + p2.location.y);
     c.write(p1.location.x + " " + p1.location.y + " " + p2.location.x + " " + p2.location.y + "\n");
   }
 }

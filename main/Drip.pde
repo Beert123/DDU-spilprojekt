@@ -50,5 +50,20 @@ class Drip {
         splash = true;
       }
     }
+    if (etage == 3) {
+      if (location.y > 420) {
+        splash = true;
+      }
+    }
+    if (etage == 4) {
+      if (location.y > 600) {
+        splash = true;
+      }
+    }
+    if (etage == 5) {
+      if (location.y > 760) {
+        splash = true;
+      }
+    }
   }
 }
