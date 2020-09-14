@@ -17,6 +17,7 @@ class Maal {
     } else {
       fill(255, 50, 0);
     }
+
     rect(location.x, location.y, bigness.x, bigness.y);
 
 
