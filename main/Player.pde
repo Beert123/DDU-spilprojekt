@@ -4,10 +4,10 @@ class Player {
   PVector acceleration;
   PVector realLocation;
   int type, h, w; // 1 is water, 2 is fire
-  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive;
+  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive, hasBoost;
 
   float groundY;
-  
+
   color playerColor;
 
   Player(float x, float y, int t, int bredde, int hoejde) {
@@ -16,7 +16,7 @@ class Player {
     realLocation = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-    
+
     isAlive = true;
     isRight = false;
     isLeft = false;
@@ -41,7 +41,13 @@ class Player {
       fill(playerColor);
       stroke(0);
       rect(location.x, location.y, w, h);
-  
+      
+      if (hasBoost) {
+        fill(255, 223, 0);
+        ellipse(location.x+40, location.y+20, 15, 15);
+        fill(playerColor);
+      }
+
       if (isLeft) moveLeft();
       if (isRight) moveRight();
       if (isJumping) jump();
@@ -64,8 +70,13 @@ class Player {
     if (velocity.y == 0 && isOnPlatform) {
       println("Start: "+groundY);
       location.y = location.y-1;
-      velocity.set(0, -7);
+      if (hasBoost) {
+        velocity.set(0, -12);
+      } else {
+        velocity.set(0, -7);
+      }
       isJumping = false;
+      hasBoost = false;
       isMidAir = true;
       isOnPlatform = false;
       //println("Jumped!");
@@ -82,7 +93,7 @@ class Player {
     velocity.add(acceleration);
     location.add(velocity);
     acceleration.mult(0);
-    
+
     if (velocity.y > 6) {
       velocity.y = 6;
     }
@@ -92,26 +103,26 @@ class Player {
       location.y = groundY;
       velocity.set(0, 0);
     }
-    
+
     if (location.y < groundY) {
       isMidAir = true;
     }
   }
-  
+
   void kill() {
     isAlive = false;
   }
-  
+
   void revive() {
     
     location.set(100,500);
     isAlive = true;
   }
-  
-  void checkEdges(){
+
+  void checkEdges() {
     if (location.y > 800) {
       location.y = 800;
-    }else if (location.y < 0) {
+    } else if (location.y < 0) {
       location.y = 0;
       velocity.y *= -1;
     }

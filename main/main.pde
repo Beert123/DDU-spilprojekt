@@ -6,12 +6,12 @@ Player player2 = new Player(100, 500, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 
 //LEVEL 1
-int[] e1 = {1,0,1,3,1};
-int[] e2 = {1,0,1};
-int[] e3 = {1,3,4,1};
+int[] e1 = {1, 0, 1, 3, 1};
+int[] e2 = {1, 0, 1};
+int[] e3 = {1, 1, 3, 4, 6};
 int[] w1 = {400, 200, 100, 100, 200};
 int[] w2 = {200, 200, 600};
-int[] w3 = {400, 100, 100, 400};
+int[] w3 = {400, 50, 100, 100, 400};
 //END LEVEL 1
 
 PVector gravity = new PVector(0, 0.25);
