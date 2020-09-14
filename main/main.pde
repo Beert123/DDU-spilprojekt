@@ -45,10 +45,10 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
 
- // maal.add(new Maal(200,650,50,50,1));
+  // maal.add(new Maal(200,650,50,50,1));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
-  
+
 
   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
@@ -61,22 +61,22 @@ void draw() {
   println(player1.point);
   println(player2.point);
 
-  for (int m = 0; m <maal.size(); m++){
+  for (int m = 0; m <maal.size(); m++) {
     Maal n = maal.get(m);
     n.display();
     n.collision(player1);
-    n.collision(player2); 
+    n.collision(player2);
   }
-  for (int i = 0; i < liquids.size(); i++){
+  for (int i = 0; i < liquids.size(); i++) {
     Liquid l = liquids.get(i);
-    
+
     l.display();
     l.collision(player1);
     l.collision(player2);
   }
-  for (int i = 0; i < diamonds.size(); i++){
+  for (int i = 0; i < diamonds.size(); i++) {
     Diamond d = diamonds.get(i);
-    
+
     d.display();
     d.collision(player1);
     d.collision(player2);
@@ -90,23 +90,23 @@ void draw() {
     platforms.get(i).collision(player1, i);
     platforms.get(i).collision(player2, i);
   }
-    player1.applyForce(gravity);
-    player1.update();
-    player1.display();
-    player1.checkEdges();
-    player2.applyForce(gravity);
-    player2.update();
-    player2.display();
-    player2.checkEdges();
-    timer();
-  
-  if(player1.isAlive == false || player2.isAlive == false) {
-  player1.revive();
-  player2.revive();
-  for(int i = 0; i < diamonds.size(); i++){
-    Diamond d = diamonds.get(i);
-    d.reset();
-  }
+  player1.applyForce(gravity);
+  player1.update();
+  player1.display();
+  player1.checkEdges();
+  player2.applyForce(gravity);
+  player2.update();
+  player2.display();
+  player2.checkEdges();
+  timer();
+
+  if (player1.isAlive == false || player2.isAlive == false) {
+    player1.revive();
+    player2.revive();
+    for (int i = 0; i < diamonds.size(); i++) {
+      Diamond d = diamonds.get(i);
+      d.reset();
+    }
   }
 }
 
@@ -132,7 +132,7 @@ void handlePress(int k, boolean b) {
   case +'D':
     player1.isRight = b;
     break;
-    case +'I':
+  case +'I':
     player2.isJumping = b;
     break;
   case +'K':
@@ -147,9 +147,9 @@ void handlePress(int k, boolean b) {
   }
 }
 
-void timer(){
-    int m = millis();
-    fill(159, 11 ,10);
-    textSize(50);
-    text(m/1000,40,40);
-  }
+void timer() {
+  int m = millis();
+  fill(159, 11, 10);
+  textSize(50);
+  text(m/1000, 40, 40);
+}
