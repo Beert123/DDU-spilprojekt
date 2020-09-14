@@ -60,7 +60,7 @@ void draw() {
   player2.checkEdges();
   timer();
   
-  if(player1.isAlive == false && player2.isAlive == false) {
+  if(player1.isAlive == false || player2.isAlive == false) {
   player1.revive();
   player2.revive();
   }
