@@ -15,12 +15,14 @@ class Platform {
     sizex = sx;
     sizey = sy;
   }
+  
   void display() {
     ymove = amplitude * cos(TWO_PI * frameCount/period);
     stroke(0);
     fill(139, 69, 19);
     rect(xpos, ypos+ymove, sizex, sizey);
   }
+  
   void collision(Player p, int i) {
     // println("Checking on platform: "+i);
     // is on the platform!
