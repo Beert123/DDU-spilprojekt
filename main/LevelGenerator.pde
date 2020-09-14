@@ -18,6 +18,9 @@ class LevelGenerator {
       case 3:
         liquids.add(new Liquid(x1, 180, w1[i], 40, 2));
         break;
+      case 4:
+        liquids.add(new Liquid(x1, 180, w1[i], 40, 3));
+        break;
       }
       x1 = x1+w1[i];
     }
@@ -32,6 +35,9 @@ class LevelGenerator {
       case 3:
         liquids.add(new Liquid(x2, 400, w2[i], 40, 2));
         break;
+      case 4:
+        liquids.add(new Liquid(x2, 400, w2[i], 40, 3));
+        break;
       }
       x2 = x2+w2[i];
     }
@@ -45,6 +51,9 @@ class LevelGenerator {
         break;
       case 3:
         liquids.add(new Liquid(x3, 650, w3[i], 40, 2));
+        break;
+      case 4:
+        liquids.add(new Liquid(x3, 650, w3[i], 40, 3));
         break;
       }
       x3 = x3+w3[i];
