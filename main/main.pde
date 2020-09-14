@@ -7,15 +7,29 @@ Player player2 = new Player(100, 500, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 
 //LEVEL 1
-int[] e1 = {1, 0, 1, 3, 1};
-int[] e2 = {1, 0, 1};
-int[] e3 = {1, 1, 3, 4, 6};
-int[] w1 = {400, 200, 100, 100, 200};
-int[] w2 = {200, 200, 600};
-int[] w3 = {400, 50, 100, 100, 400};
+int[] e1 = {0, 1, 1, 1};
+int[] e2 = {5, 1, 1, 1, 1};
+int[] e3 = {0, 1, 1, 1, 1, 5};
+int[] e4 = {5, 1, 1, 1, 4, 1};
+int[] e5 = {1, 3, 1, 2, 1, 5};
+int[] w1 = {200, 50, 150, 600};
+int[] w2 = {100, 400, 200, 50, 150};
+int[] w3 = {200, 200, 50, 300, 125, 125};
+int[] w4 = {150, 150, 50, 150, 150, 150};
+int[] w5 = {350, 100, 200, 100, 100, 150};
+int[] h1 = {40, 60, 100, 40};
+int[] h2 = {120, 40, 80, 100, 60};
+int[] h3 = {40, 40, 60, 40, 80, 80};
+int[] h4 = {40, 40, 90, 40, 40, 40};
+int[] h5 = {40, 40, 40, 40, 40, 100};
+int[] y1 = {110, 90, 110, 110};
+int[] y2 = {200, 280, 240, 240, 280};
+int[] y3 = {400, 400, 400, 420, 420, 420};
+int[] y4 = {550, 550, 550, 600, 600, 600};
+int[] y5 = {760, 760, 760, 760, 760, 700};
 //END LEVEL 1
 
-PVector gravity = new PVector(0, 0.25);
+PVector gravity = new PVector(0, 0.30);
 
 void setup() {
   size(1000, 800);
@@ -29,13 +43,20 @@ void setup() {
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
   diamonds.add(new Diamond(250, 600, 20, 20 ,1));
+  diamonds.add(new Diamond(300, 600, 20, 20 ,1));
+  diamonds.add(new Diamond(350, 600, 20, 20 ,2));
+  diamonds.add(new Diamond(400, 600, 20, 20 ,2));
   
-  gen.generateLevel(e1, e2, e3, w1, w2, w3);
-  }
+
+  gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+}
+
 
 
 void draw() {
   background(255);
+  println(player1.point);
+  println(player2.point);
 
   for (int m = 0; m <maal.size(); m++){
     Maal n = maal.get(m);
@@ -56,6 +77,8 @@ void draw() {
     d.display();
     d.collision(player1);
     d.collision(player2);
+    //d.pointCollect(player1);
+    //d.pointCollect(player2);
   }
   for (int i = 0; i < platforms.size(); i++) {
     Platform p = platforms.get(i);
@@ -77,6 +100,10 @@ void draw() {
   if(player1.isAlive == false || player2.isAlive == false) {
   player1.revive();
   player2.revive();
+  for(int i = 0; i < diamonds.size(); i++){
+    Diamond d = diamonds.get(i);
+    d.reset();
+  }
   }
 }
 

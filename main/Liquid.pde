@@ -45,7 +45,7 @@ class Liquid {
   void collision(Player p) {
     if (p.location.x> x && p.location.x< x+w && p.location.y> y && p.location.y<y+hl)
     {
-      println("YEEAAHH1");
+      //println("YEEAAHH1");
       if (state == 1 && p.type == 2) {
         p.kill();
       }
@@ -57,7 +57,7 @@ class Liquid {
       }
     }
     if (p.location.x> x && p.location.x< x+w && p.location.y+p.h> y+10 && p.location.y+p.h<y+hl) {
-      println("YEEAAHH2");
+      //println("YEEAAHH2");
       if (state == 1 && p.type == 2) {
         p.kill();
       }

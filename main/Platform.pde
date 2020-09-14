@@ -21,7 +21,7 @@ class Platform {
 
   void display() {
     ymove = amplitude * cos(TWO_PI * frameCount/period);
-    stroke(0);
+    noStroke();
     fill(139, 69, 19);
     rect(xpos, ypos+ymove, sizex, sizey);
 
@@ -31,7 +31,8 @@ class Platform {
     }
     
     if (timeToBoost > 0) timeToBoost = timeToBoost - 0.02;
-  //  println(timeToBoost);
+
+    //println(timeToBoost);
   }
 
   void collision(Player p, int i) {
