@@ -40,6 +40,7 @@ void draw() {
     
     l.display();
     l.collision(player1);
+    l.collision(player2);
   }
   
   for (int i = 0; i < platforms.size(); i++) {
@@ -58,6 +59,11 @@ void draw() {
   player2.display();
   player2.checkEdges();
   timer();
+  
+  if(player1.isAlive == false && player2.isAlive == false) {
+  player1.revive();
+  player2.revive();
+  }
 }
 
 void keyPressed() {
@@ -99,6 +105,7 @@ void handlePress(int k, boolean b) {
 
 void timer(){
     int m = millis();
+    fill(159, 11 ,10);
     textSize(50);
     text(m/1000,40,40);
   }
