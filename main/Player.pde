@@ -4,7 +4,7 @@ class Player {
   PVector acceleration;
   PVector realLocation;
   int type, h, w; // 1 is water, 2 is fire
-  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform;
+  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive;
 
   float groundY;
 
@@ -36,13 +36,15 @@ class Player {
   }
 
   void display() {
-    fill(playerColor);
-    stroke(0);
-    rect(location.x, location.y, w, h);
-
-    if (isLeft) moveLeft();
-    if (isRight) moveRight();
-    if (isJumping) jump();
+    if (isAlive) {
+      fill(playerColor);
+      stroke(0);
+      rect(location.x, location.y, w, h);
+  
+      if (isLeft) moveLeft();
+      if (isRight) moveRight();
+      if (isJumping) jump();
+    }
   }
 
   void moveLeft() {
@@ -58,10 +60,10 @@ class Player {
   }
 
   void jump() {
-    if (velocity.y == 0) {
+    if (velocity.y == 0 && isOnPlatform) {
       println("Start: "+groundY);
       location.y = location.y-1;
-      velocity.set(0, -12);
+      velocity.set(0, -7);
       isJumping = false;
       isMidAir = true;
       isOnPlatform = false;
@@ -94,6 +96,15 @@ class Player {
       isMidAir = true;
     }
   }
+  
+  void kill() {
+    isAlive = false;
+  }
+  
+  void revive() {
+    isAlive = true;
+  }
+  
   void checkEdges(){
     if (location.y > 800) {
       location.y = 800;
