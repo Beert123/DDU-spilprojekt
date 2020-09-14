@@ -74,7 +74,7 @@ class Player {
       if (hasBoost) {
         velocity.set(0, -10);
       } else {
-        velocity.set(0, -7);
+        velocity.set(0, -7  );
       }
       isJumping = false;
       hasBoost = false;

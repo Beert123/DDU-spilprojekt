@@ -5,6 +5,7 @@ ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
 Player player1 = new Player(100, 650, 1, 30, 60);
 Player player2 = new Player(100, 650, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
+DiamondsGenerator genD = new DiamondsGenerator(1);
 
 //LEVEL 1
 int[] e1 = {0, 1, 1, 1};
@@ -27,7 +28,12 @@ int[] y2 = {200, 280, 240, 240, 280};
 int[] y3 = {400, 400, 400, 420, 420, 420};
 int[] y4 = {550, 550, 550, 600, 600, 600};
 int[] y5 = {760, 760, 760, 760, 760, 700};
+
+int[] x = {200, 300, 400};
+int[] y = {650, 650, 650};
+int[] t = {1, 2, 1};
 //END LEVEL 1
+
 
 PVector gravity = new PVector(0, 0.30);
 
@@ -42,13 +48,10 @@ void setup() {
   maal.add(new Maal(200,650,50,50));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
-  diamonds.add(new Diamond(250, 600, 20, 20 ,1));
-  diamonds.add(new Diamond(300, 600, 20, 20 ,1));
-  diamonds.add(new Diamond(350, 600, 20, 20 ,2));
-  diamonds.add(new Diamond(400, 600, 20, 20 ,2));
   
 
   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+  genD.generateDiamonds(x, y, t, 3);
 }
 
 
