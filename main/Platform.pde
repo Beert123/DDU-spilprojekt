@@ -38,16 +38,18 @@ class Platform {
   void collision(Player p, int i) {
     // println("Checking on platform: "+i);
     // is on the platform!
-// fra siden
+    
+// fra siden (venstre)
+
     if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x+p.w > xpos+xmove && p.location.x+p.w+xmove < xpos+10+xmove) {
       p.location.x = xpos-p.w+xmove;
     }
-// fra siden
+// fra siden (højre)
     if (p.location.y+p.h > ypos+8 && p.location.y < ypos+sizey && p.location.x < xpos+sizex+xmove && p.location.x+xmove > xpos+sizex-10+xmove) {
       p.location.x = xpos+sizex+xmove;
     }
 //oppe fra og ned
-    if (p.location.y+p.h > ypos && p.location.y <= ypos+8 && p.location.x+p.w > xmove+xpos && p.location.x+xmove < xpos+sizex+xmove && p.location.y+p.h < ypos+8) {
+    if (p.location.y+p.h > ypos && p.location.y <= ypos+8 && p.location.x+p.w > xmove+xpos && p.location.x < xpos+sizex+xmove && p.location.y+p.h < ypos+8) {
       p.location.y = ypos-60;
       p.isOnPlatform = true;
       p.isMidAir = false;

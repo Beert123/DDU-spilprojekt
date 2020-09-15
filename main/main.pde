@@ -1,5 +1,5 @@
 import processing.net.*;
-
+int level;
 Server s; 
 Client c;
 String input;
@@ -18,6 +18,7 @@ DiamondsGenerator genD = new DiamondsGenerator(1);
 boolean server = true;
 
 //LEVEL 1
+
 int[] e1 = {0, 1, 1, 1};
 int[] e2 = {5, 1, 1, 1, 1};
 int[] e3 = {0, 1, 1, 1, 1, 5};
@@ -42,6 +43,7 @@ int[] y5 = {760, 760, 760, 760, 760, 700};
 int[] x = {200, 300, 400};
 int[] y = {650, 650, 650};
 int[] t = {1, 2, 1};
+
 //END LEVEL 1
 
 
@@ -138,7 +140,32 @@ void draw() {
 
   sendNetworkData();
   recieveNetworkData();
-}
+  
+  switch(level){
+   case 1:
+   level1();
+   break;
+   case 2:
+   level2();
+   break;
+  }
+    
+  }
+  void level1(){
+    
+    
+    
+    goToLevel2();
+  }
+
+  void level2(){
+   
+    
+  }
+  
+  void goToLevel2(){
+   level= 2; 
+  }
 
 void keyPressed() {
   handlePress(keyCode, true);
