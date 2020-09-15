@@ -92,7 +92,7 @@ void setup() {
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
   
-  menu = new Menu(50, 50, width/2-150, height/2-50, 100, 100);
+  menu = new Menu(50, 50, width/2-250, height/2-50, 100, 100);
 
   drips.add(new Drip(100, 320, 20, 1, 550));
 
