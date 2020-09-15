@@ -130,11 +130,6 @@ void setup() {
 
   //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
-  if (server) {
-    s = new Server(this, 12345);  // Start a simple server on a port
-  } else {
-    c = new Client(this, "172.20.10.4", 12345); // Replace with your server’s IP and port
-  }
 }
 
 void draw() {
@@ -145,16 +140,18 @@ void draw() {
 
   if (levelDrawn == false && menu.ready) {
     levelId = menu.levelId;
-    
-    if (menu.offline) {
-      server = false;
-    }
-    
+
     println("Fetched lvl ID: "+menu.levelId);
     drawLevel(levelId);
     levelDrawn = true;
 
     println("drawing");
+
+    if (menu.offline) {
+      s = new Server(this, 12345);  // Start a simple server on a port
+    } else {
+      c = new Client(this, "172.20.10.4", 12345); // Replace with your server’s IP and port
+    }
   }
 
   if (levelDrawn) {
