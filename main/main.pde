@@ -208,19 +208,6 @@ void draw() {
     }
   }
 }
-void level1() {
-
-
-
-  goToLevel2();
-}
-
-void level2() {
-}
-
-void goToLevel2() {
-  level= 2;
-}
 
 void keyPressed() {
   if (key == 'n') {
