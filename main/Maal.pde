@@ -20,9 +20,12 @@ class Maal {
 
     rect(location.x, location.y, bigness.x, bigness.y);
 
+    if (sejr1) {
+      println("ayoo");
+    }
 
-    if (sejr1 && sejr2) {
-      println("SEJR");
+    if (sejr2) {
+      println("aaayoo");
     }
   }
 
@@ -47,7 +50,7 @@ class Maal {
     }
 
 
-    if (state == 2  && p == player2) {
+    if (state == 2 && p == player2) {
       if (p.location.y+p.h > location.y+8 && p.location.y < location.y+bigness.y && p.location.x+p.w > location.x && p.location.x+p.w < location.x+10) {
         sejr2 = true;
       }
