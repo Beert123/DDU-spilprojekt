@@ -6,6 +6,8 @@ class Menu {
 
   boolean online, offline, lvl1, lvl2;
 
+  color c1, c2;
+
   Menu(int x1, int y1, int x2, int y2, int w, int h) {
 
     posX = x1;
@@ -15,15 +17,19 @@ class Menu {
     bredde = w;
     hoejde = h;
     levelStart = false;
+    c1 = 255;
+    c2 = 255;
   }
 
   void display() {
     //translate(width/2-150, height/2-50);
     //rectMode(CENTER);
     //textMode(CENTER);
-    fill(255);
+    fill(c1);
     rect(posX, posY, bredde, hoejde);
+    fill(c2);
     rect(posX+200, posY, bredde, hoejde);
+    fill(255);
     rect(posX2, posY2, bredde, hoejde);
     rect(posX2+200, posY2, bredde, hoejde);
     rect(posX2+400, posY2, bredde, hoejde);
@@ -38,6 +44,20 @@ class Menu {
   }
 
   void knap() {
+    if (!online) {
+      if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
+        c1 = 175;
+      } else {
+        c1 = 255;
+      }
+    }
+    if (!offline) {
+      if (mouseX > posX+200 && mouseX < posX+bredde+200 && mouseY > posY && mouseY < posY+hoejde) {
+        c2 = 175;
+      } else {
+        c2=255;
+      }
+    }
     if (mousePressed) {
       println(mouseX, mouseY);
       if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
@@ -60,6 +80,14 @@ class Menu {
       }
       if (mouseX > posX2+400 && mouseX < posX2+bredde+400 && mouseY > posY2 && mouseY < posY2+hoejde) {
         println("LVL3");
+      }
+      if (online) {
+        c1 = 175;
+        c2 = 255;
+      }
+      if (offline) {
+        c1 = 255;
+        c2 = 175;
       }
     }
   }
