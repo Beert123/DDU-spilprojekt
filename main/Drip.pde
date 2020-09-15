@@ -3,7 +3,7 @@ class Drip {
   PVector velocity;
   PVector acceleration;
 
-  float diameter, state,x,y;
+  float diameter, state, x, y;
 
   int etage;
 
@@ -45,9 +45,82 @@ class Drip {
     if (location.y+diameter/2 > etage) {
       splash = true;
     }
-    if(splash){
-      location.set(x,y);
+    if (splash) {
+      location.set(x, y);
       splash = false;
+    }
+  }
+  void collision(Player p) {
+
+    if (p.location.dist(location) < diameter/2+5) {
+      println("JAATAKK");
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
+    }
+    if (p.location.copy().add(0, p.h/2).dist(location) < diameter/2+5) {
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
+    }
+    if (p.location.copy().add(0, p.h).dist(location) < diameter/2+5) {
+      println("JAATAKK2");
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
+    }
+    if (p.location.copy().add(p.w, 0).dist(location) < diameter/2+5) {
+      println("JAATAKK3");
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
+    }
+    if (p.location.copy().add(p.w, p.h/2).dist(location) < diameter/2+5) {
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
+    }
+    if (p.location.copy().add(p.w, p.h).dist(location) < diameter/2+5) {
+      println("JAATAKK4");
+      if (state == 1 && p.type == 2) {
+        p.kill();
+      }
+      if (state == 2 && p.type == 1) {
+        p.kill();
+      }
+      if (state == 3) {
+        p.kill();
+      }
     }
   }
 }
