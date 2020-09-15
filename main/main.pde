@@ -7,6 +7,7 @@ float data[];
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
+ArrayList<Button> buttons = new ArrayList<Button>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
 ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
 ArrayList<Drip> drips = new ArrayList<Drip>();
@@ -20,23 +21,23 @@ boolean server = true;
 //LEVEL 1
 
 int[] e1 = {0, 1, 1, 1};
-int[] e2 = {5, 1, 1, 1, 1};
-int[] e3 = {0, 1, 1, 1, 1, 5};
+int[] e2 = {5, 1, 1, 1, 1, 1};
+int[] e3 = {0, 1, 1, 1, 1, 0};
 int[] e4 = {5, 1, 1, 1, 4, 1};
 int[] e5 = {1, 3, 1, 2, 1, 5};
 int[] w1 = {200, 50, 150, 600};
-int[] w2 = {100, 400, 200, 50, 150};
-int[] w3 = {200, 200, 50, 300, 125, 125};
+int[] w2 = {100, 400, 200, 50, 150, 100};
+int[] w3 = {200, 200, 50, 300, 150, 100};
 int[] w4 = {150, 150, 50, 150, 150, 150};
 int[] w5 = {350, 100, 200, 100, 100, 150};
 int[] h1 = {40, 60, 100, 40};
-int[] h2 = {120, 40, 80, 100, 60};
-int[] h3 = {40, 40, 60, 40, 80, 80};
+int[] h2 = {120, 40, 80, 100, 60, 40};
+int[] h3 = {40, 40, 60, 40, 80, 40};
 int[] h4 = {40, 40, 90, 40, 40, 40};
 int[] h5 = {40, 40, 40, 40, 40, 100};
 int[] y1 = {110, 90, 110, 110};
-int[] y2 = {200, 280, 240, 240, 280};
-int[] y3 = {400, 400, 400, 420, 420, 420};
+int[] y2 = {200, 280, 240, 240, 280, 300};
+int[] y3 = {400, 400, 400, 420, 420, 460};
 int[] y4 = {550, 550, 550, 600, 600, 600};
 int[] y5 = {760, 760, 760, 760, 760, 700};
 
@@ -62,6 +63,8 @@ void setup() {
   maal.add(new Maal(780, 50, 50, 50, 2));
   
   drips.add(new Drip(100, 320, 20, 1, 550));
+  
+  buttons.add(new Button(170, 740, 8));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
@@ -81,8 +84,16 @@ void draw() {
   background(255);
   //println(player1.point);
   //println(player2.point);
+  
+  for (int i = 0; i < buttons.size(); i++) {
+    Button b = buttons.get(i);
+    
+    b.display();
+    b.checkStep(player1);
+    b.checkStep(player2);
+  }
 
-  for (int m = 0; m <maal.size(); m++) {
+  for (int m = 0; m < maal.size(); m++) {
     Maal n = maal.get(m);
     n.display();
     n.collision(player1);

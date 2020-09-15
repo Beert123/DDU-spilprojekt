@@ -98,7 +98,7 @@ class Player {
     if (velocity.y > 6) {
       velocity.y = 6;
     }
-
+    
     if (location.y > groundY) {
       isMidAir = false;
       location.y = groundY;
