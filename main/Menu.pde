@@ -4,11 +4,11 @@ class Menu {
   float posX, posY, posX2, posY2, bredde, hoejde, colorr;
   boolean levelStart;
 
-  boolean online, offline, lvl1, lvl2, hover1, hover2, ready;
-  
+  boolean online, offline, lvl1c, lvl2c, lvl3c, rc, ready;
+
   int levelId;
 
-  color c1, c2, c3, c4, c5;
+  color c1, c2, c3, c4, c5, c6;
 
   Menu(int x1, int y1, int x2, int y2, int w, int h) {
 
@@ -24,7 +24,8 @@ class Menu {
     c3 = 255;
     c4 = 255;
     c5 = 255;
-    
+    c6 = 255;
+
     levelId = 3;
   }
 
@@ -42,6 +43,7 @@ class Menu {
     rect(posX2+200, posY2, bredde, hoejde);
     fill(c5);
     rect(posX2+400, posY2, bredde, hoejde);
+    fill(c6);
     rect(posX2+200, posY2+200, bredde, hoejde);
     fill(0);
     textSize(18);
@@ -51,6 +53,8 @@ class Menu {
     text("Level 1", posX2+20, posY2+55);
     text("Level 2", posX2+220, posY2+55);
     text("Level 3", posX2+420, posY2+55);
+    
+    text("Start", posX2+230, posY2+55+200);
   }
 
   void knap() {
@@ -68,96 +72,100 @@ class Menu {
         c2 = 255;
       }
     }
-    if (mousePressed) {
-      println(mouseX, mouseY);
-      if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
-        println("CLICK");
-        online = true;
-        offline = false;
-      }
-
-      if (mouseX > posX+200 && mouseX < posX+bredde+200 && mouseY > posY && mouseY < posY+hoejde) {
-        println("CLOCK");
-        online = false;
-        offline = true;
-      }
-
+    if (!lvl1c) {
       if (mouseX > posX2 && mouseX < posX2+bredde && mouseY > posY2 && mouseY < posY2+hoejde) {
-        levelId = 1;
-        println("LVL1");
+        c3 = 175;
+      } else {
+        c3 = 255;
       }
+    }
+    if (!lvl2c) {
       if (mouseX > posX2+200 && mouseX < posX2+bredde+200 && mouseY > posY2 && mouseY < posY2+hoejde) {
-        levelId = 2;
-        println("LVL2");
+        c4 = 175;
+      } else {
+        c4 = 255;
       }
+    }
+    if (!lvl3c) {
       if (mouseX > posX2+400 && mouseX < posX2+bredde+400 && mouseY > posY2 && mouseY < posY2+hoejde) {
-        levelId = 3;
-        println("LVL3");
+        c5 = 175;
+      } else {
+        c5 = 255;
       }
-      if(mouseX > posX2+200 && mouseX < posX2+200+bredde && mouseY > posY2+200 && mouseY < posY2+200+hoejde){
-        println("ready");
-        ready = true;
+    }
+    if (!rc) {
+      if (mouseX > posX2+200 && mouseX < posX2+200+bredde && mouseY > posY2+200 && mouseY < posY2+200+hoejde) {
+        c6 = 175;
+      } else {
+        c6 = 255;
       }
-      if (online) {
-        c1 = 175;
-        c2 = 255;
-      }
-      if (offline) {
-        c1 = 255;
-        c2 = 175;
+      if (mousePressed) {
+        println(mouseX, mouseY);
+        if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
+          println("CLICK");
+          online = true;
+          offline = false;
+        }
+
+        if (mouseX > posX+200 && mouseX < posX+bredde+200 && mouseY > posY && mouseY < posY+hoejde) {
+          println("CLOCK");
+          online = false;
+          offline = true;
+        }
+
+        if (mouseX > posX2 && mouseX < posX2+bredde && mouseY > posY2 && mouseY < posY2+hoejde) {
+          levelId = 1;
+          println("LVL1");
+          lvl1c = true;
+          lvl2c = false;
+          lvl3c = false;
+        }
+        if (mouseX > posX2+200 && mouseX < posX2+bredde+200 && mouseY > posY2 && mouseY < posY2+hoejde) {
+          levelId = 2;
+          println("LVL2");
+          lvl1c = false;
+          lvl2c = true;
+          lvl3c = false;
+        }
+        if (mouseX > posX2+400 && mouseX < posX2+bredde+400 && mouseY > posY2 && mouseY < posY2+hoejde) {
+          levelId = 3;
+          println("LVL3");
+          lvl1c = false;
+          lvl2c = false;
+          lvl3c = true;
+        }
+        if (mouseX > posX2+200 && mouseX < posX2+200+bredde && mouseY > posY2+200 && mouseY < posY2+200+hoejde) {
+          println("ready");
+          ready = true;
+          rc = true;
+        }
+        if (online) {
+          c1 = 175;
+          c2 = 255;
+        }
+        if (offline) {
+          c1 = 255;
+          c2 = 175;
+        }
+        if (lvl1c) {
+          c3 = 175;
+          c4 = 255;
+          c5 = 255;
+        }
+        if (lvl2c) {
+          c3 = 255;
+          c4 = 175;
+          c5 = 255;
+        }
+        if (lvl3c) {
+          c3 = 255;
+          c4 = 255;
+          c5 = 175;
+        }
+        if (rc) {
+          c6 = 175;
+        }
       }
     }
   }
-
-
-
-
-  /*
-   switch(level) {
-   case 0:
-   menu();
-   break;
-   case 1:
-   level1();
-   break;
-   case 2:
-   level2();
-   break;
-   }
-
-   void menu(){
-   }
-
-   void level1() {
-   if (isThisANewLevel) {
-   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
-   genD.generateDiamonds(x, y, t, 3);
-   isThisANewLevel = false;
-   }
-
-
-   for(int i = 0; i < maal.size(); i++){
-   Maal m = maal.get(i);
-
-   m.collision(player1);
-   m.collision(player2);
-   if(maal1.sejr1 && maal2.sejr2){
-   goToLevel2();
-   }
-   }
-   }
-
-   void level2() {
-   clear();
-
-   }
-
-   void goToLevel1(){
-   level =1;
-   }
-
-   void goToLevel2() {
-   level= 2;
-   }
-   */
 }
