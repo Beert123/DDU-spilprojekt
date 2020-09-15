@@ -7,6 +7,11 @@ class LevelGenerator {
   }
 
   void generateLevel(int[] e1, int[] e2, int[] e3, int[] e4, int[] e5, int[] w1, int[] w2, int[] w3, int[] w4, int[] w5, int[] h1, int[] h2, int[] h3, int[] h4, int[] h5, int[] y1, int[] y2, int[] y3, int[] y4, int[] y5) {
+    platforms.clear();
+    liquids.clear();
+    
+    println("GEN: "+level);
+    
     for (int i = 0; i < e1.length; i++) {
       switch(e1[i]) {
       case 1:

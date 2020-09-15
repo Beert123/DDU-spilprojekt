@@ -14,7 +14,7 @@ class Drip {
     y = y_;
     location = new PVector(x, y);
     velocity = new PVector();
-    acceleration = new PVector(0, 1);
+    acceleration = new PVector(0, 0.05);
     diameter = d;
     state = s;
     etage = e;
@@ -35,17 +35,18 @@ class Drip {
         ellipse(location.x, location.y, diameter, diameter);
       }
     }
+    //println(velocity);
   }
 
   void update() {
     velocity.add(acceleration);
     location.add(velocity);
-    acceleration.mult(0);
 
     if (location.y+diameter/2 > etage) {
       splash = true;
     }
     if (splash) {
+      velocity.set(0,0);
       location.set(x, y);
       splash = false;
     }

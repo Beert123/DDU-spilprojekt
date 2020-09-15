@@ -58,6 +58,7 @@ class Liquid {
     }
     if (p.location.x> x && p.location.x< x+w && p.location.y+p.h> y+10 && p.location.y+p.h<y+hl) {
       //println("YEEAAHH2");
+      println(p.inLiquid);
       if (state == 1 && p.type == 2) {
         p.kill();
       }
@@ -71,6 +72,7 @@ class Liquid {
     if (p.location.y+p.h > yg && p.location.y <= yg+8 && p.location.x+p.w > x && p.location.x < x+w && p.location.y+p.h < yg+8) {
       p.location.y = yg-60;
       p.isOnPlatform = true;
+      p.inLiquid = true;
       p.isMidAir = false;
       p.velocity.set(0, 0);
     }
