@@ -144,12 +144,12 @@ void draw() {
     if (!buttons.get(1).down) {
       buttons.get(0).checkStep();
     }
-    for (int m = 0; m < maal.size(); m++) {
-      Maal n = maal.get(m);
+    for (int i = 0; i < maal.size(); i++) {
+      Maal m = maal.get(i);
       
-      n.display();
-      n.collision(player1);
-      n.collision(player2);
+      m.display();
+      m.collision(player1);
+      m.collision(player2);
       
       if (maal.get(0).sejr1 && maal.get(1).sejr2) {
         handleWin();
