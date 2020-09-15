@@ -15,6 +15,7 @@ Player player1 = new Player(50, 600, 1, 30, 60);
 Player player2 = new Player(50, 700, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 LevelGenerator gen2 = new LevelGenerator(2);
+LevelGenerator gen3 = new LevelGenerator(3);
 DiamondsGenerator genD = new DiamondsGenerator(1);
 Menu menu;
 
@@ -76,6 +77,31 @@ int[] yy5 = {760, 670, 670, 760, 760, 760, 760, 760, 700};
 
 // END LEVEL 2
 
+// LEVEL 3
+
+int[] eee1 = {0, 0, 0, 0};
+int[] eee2 = {5, 0, 0, 0, 0, 0};
+int[] eee3 = {0, 1, 1, 1, 1, 0};
+int[] eee4 = {5, 1, 1, 1, 4, 1};
+int[] eee5 = {1, 1, 1, 1, 3, 1, 2, 1, 5};
+int[] www1 = {200, 50, 150, 600};
+int[] www2 = {100, 400, 200, 50, 150, 100};
+int[] www3 = {200, 200, 50, 300, 150, 100};
+int[] www4 = {150, 150, 50, 150, 150, 150};
+int[] www5 = {220, -220, 220, 130, 100, 200, 100, 100, 150};
+int[] hhh1 = {40, 60, 100, 40};
+int[] hhh2 = {120, 40, 80, 100, 60, 40};
+int[] hhh3 = {40, 40, 60, 40, 80, 40};
+int[] hhh4 = {40, 40, 90, 40, 40, 40};
+int[] hhh5 = {40, 20, 20, 40, 40, 40, 40, 40, 100};
+int[] yyy1 = {110, 90, 110, 110};
+int[] yyy2 = {200, 280, 240, 240, 280, 300};
+int[] yyy3 = {400, 400, 400, 420, 420, 460};
+int[] yyy4 = {550, 550, 550, 600, 600, 600};
+int[] yyy5 = {760, 670, 670, 760, 760, 760, 760, 760, 700};
+
+// END LEVEL 3
+
 
 PVector gravity = new PVector(0, 0.30);
 
@@ -91,7 +117,7 @@ void setup() {
 
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
-  
+
   menu = new Menu(50, 50, width/2-250, height/2-50, 100, 100);
 
   drips.add(new Drip(100, 320, 20, 1, 550));
@@ -114,10 +140,13 @@ void setup() {
 
 
 void draw() {
-  menu.display();
-  menu.knap();
-  
-  if (levelDrawn == false && ready) {
+  if (!menu.ready) {
+    menu.display();
+    menu.knap();
+  }
+
+  if (levelDrawn == false && menu.ready) {
+    menu.levelId = levelId;
     drawLevel(levelId);
     levelDrawn = true;
 
@@ -146,11 +175,11 @@ void draw() {
     }
     for (int i = 0; i < maal.size(); i++) {
       Maal m = maal.get(i);
-      
+
       m.display();
       m.collision(player1);
       m.collision(player2);
-      
+
       if (maal.get(0).sejr1 && maal.get(1).sejr2) {
         handleWin();
       }
@@ -187,7 +216,7 @@ void draw() {
       platforms.get(i).collision(player1, i);
       platforms.get(i).collision(player2, i);
     }
-    
+
     player1.applyForce(gravity);
     player1.update();
     player1.display();
@@ -327,6 +356,10 @@ void drawLevel(int lvl) {
     gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
     println("level 2!");
     break;
+  case 3:
+    gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
+    println("level 3!");
+    break;
   }
 
   levelDrawn = true;
@@ -341,5 +374,5 @@ void clearLevel() {
   platforms.clear();
   liquids.clear();
 
-  drawLevel(2);
+  drawLevel(levelId);
 }

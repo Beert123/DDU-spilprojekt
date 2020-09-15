@@ -4,7 +4,7 @@ class Menu {
   float posX, posY, posX2, posY2, bredde, hoejde, colorr;
   boolean levelStart;
 
-  boolean online, offline, lvl1, lvl2;
+  boolean online, offline, lvl1, lvl2, hover1, hover2;
 
   Menu(int x1, int y1, int x2, int y2, int w, int h) {
 
@@ -21,7 +21,9 @@ class Menu {
     //translate(width/2-150, height/2-50);
     //rectMode(CENTER);
     //textMode(CENTER);
+    
     fill(255);
+
     rect(posX, posY, bredde, hoejde);
     rect(posX+200, posY, bredde, hoejde);
     rect(posX2, posY2, bredde, hoejde);
