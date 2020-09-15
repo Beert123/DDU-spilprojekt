@@ -137,8 +137,6 @@ void setup() {
   }
 }
 
-
-
 void draw() {
   if (!menu.ready) {
     menu.display();
@@ -146,7 +144,8 @@ void draw() {
   }
 
   if (levelDrawn == false && menu.ready) {
-    menu.levelId = levelId;
+    levelId = menu.levelId;
+    println("Fetched lvl ID: "+menu.levelId);
     drawLevel(levelId);
     levelDrawn = true;
 

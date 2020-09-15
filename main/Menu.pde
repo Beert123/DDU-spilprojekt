@@ -4,7 +4,9 @@ class Menu {
   float posX, posY, posX2, posY2, bredde, hoejde, colorr;
   boolean levelStart;
 
-  boolean online, offline, lvl1, lvl2, hover1, hover2;
+  boolean online, offline, lvl1, lvl2, hover1, hover2, ready;
+  
+  int levelId;
 
   color c1, c2, c3, c4, c5;
 
@@ -22,6 +24,8 @@ class Menu {
     c3 = 255;
     c4 = 255;
     c5 = 255;
+    
+    levelId = 3;
   }
 
   void display() {
@@ -79,12 +83,15 @@ class Menu {
       }
 
       if (mouseX > posX2 && mouseX < posX2+bredde && mouseY > posY2 && mouseY < posY2+hoejde) {
+        levelId = 1;
         println("LVL1");
       }
       if (mouseX > posX2+200 && mouseX < posX2+bredde+200 && mouseY > posY2 && mouseY < posY2+hoejde) {
+        levelId = 2;
         println("LVL2");
       }
       if (mouseX > posX2+400 && mouseX < posX2+bredde+400 && mouseY > posY2 && mouseY < posY2+hoejde) {
+        levelId = 3;
         println("LVL3");
       }
       if(mouseX > posX2+200 && mouseX < posX2+200+bredde && mouseY > posY2+200 && mouseY < posY2+200+hoejde){
