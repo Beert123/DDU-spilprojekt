@@ -61,9 +61,10 @@ void setup() {
 
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
-  
+
   drips.add(new Drip(100, 320, 20, 1, 550));
-  
+
+  buttons.add(new Button(650, 400, 8));
   buttons.add(new Button(170, 740, 8));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
@@ -84,24 +85,29 @@ void draw() {
   background(255);
   //println(player1.point);
   //println(player2.point);
-  
+
   for (int i = 0; i < buttons.size(); i++) {
     Button b = buttons.get(i);
-    
-    b.display();
-    b.checkStep(player1);
-    b.checkStep(player2);
-  }
 
+    b.display();
+  }
+  
+  if (!buttons.get(0).down) {
+    buttons.get(1).checkStep();
+  }
+  
+  if (!buttons.get(1).down) {
+    buttons.get(0).checkStep();
+  }
   for (int m = 0; m < maal.size(); m++) {
     Maal n = maal.get(m);
     n.display();
     n.collision(player1);
     n.collision(player2);
   }
-  for (int i = 0; i < drips.size();i++){
+  for (int i = 0; i < drips.size(); i++) {
     Drip d = drips.get(i);
-    
+
     d.display();
     d.update();
     d.collision(player1);
@@ -151,32 +157,29 @@ void draw() {
 
   sendNetworkData();
   recieveNetworkData();
-  
-  switch(level){
-   case 1:
-   level1();
-   break;
-   case 2:
-   level2();
-   break;
-  }
-    
-  }
-  void level1(){
-    
-    
-    
-    goToLevel2();
-  }
 
-  void level2(){
-   
-    
+  switch(level) {
+  case 1:
+    level1();
+    break;
+  case 2:
+    level2();
+    break;
   }
-  
-  void goToLevel2(){
-   level= 2; 
-  }
+}
+void level1() {
+
+
+
+  goToLevel2();
+}
+
+void level2() {
+}
+
+void goToLevel2() {
+  level= 2;
+}
 
 void keyPressed() {
   handlePress(keyCode, true);

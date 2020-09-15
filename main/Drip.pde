@@ -35,7 +35,7 @@ class Drip {
         ellipse(location.x, location.y, diameter, diameter);
       }
     }
-    println(velocity);
+    //println(velocity);
   }
 
   void update() {

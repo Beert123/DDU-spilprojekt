@@ -61,9 +61,7 @@ class Player {
 
   void moveLeft() {
     if (location.x >= 2) {
-      println("hey");
       if (inLiquid) {
-        println("hey2");
         location.add(-2, 0);
       } else {
         location.add(-4, 0);
