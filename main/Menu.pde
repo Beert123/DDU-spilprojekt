@@ -1,31 +1,48 @@
 class Menu {
 
   //  boolean isThisANewLevel = true;  //level generatoren skal kun køre 1 gang
-  float posX, posY, bredde, hojde, colorr;
+  float posX, posY, posX2, posY2, bredde, hoejde, colorr;
   boolean levelStart;
+  
+  boolean online, offline, lvl1, lvl2;
 
-  Menu(int x, int y, int w, int h) {
+  Menu(int x1, int y1, int x2, int y2, int w, int h) {
 
-    posX=x;
-    posY=y;
-    bredde=w;
-    hojde=h;
+    posX = x1;
+    posY = y1;
+    posX2 = x2;
+    posY2 = y2;
+    bredde = w;
+    hoejde = h;
     levelStart = false;
   }
 
   void display() {
-    
-    rectMode(CENTER);
-    textMode(CENTER);
-    rect(posX, posY, bredde, hojde);
-    text("Online", posX, posY);
-    text("Offline", posX, posY);
-    rect(posX+200, posY, bredde, hojde);
+    //translate(width/2-150, height/2-50);
+    //rectMode(CENTER);
+    //textMode(CENTER);
+    fill(255);
+    rect(posX, posY, bredde, hoejde);
+    rect(posX+200, posY, bredde, hoejde);
+    fill(0);
+    textSize(18);
+    text("Online", posX+20, posY+55);
+    text("Offline", posX+220, posY+55);
   }
 
   void knap() {
-    if (mousePressed) {  
-      if (mouseX < posX + bredde/2 && mouseX > posX/2 && mouseY > posY/2 && mouseY < posY+hojde/2) {
+    if (mousePressed) {
+      println(mouseX, mouseY);
+      if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
+        println("CLICK");
+        online = true;
+        offline = false;
+      }
+      
+      if (mouseX > posX+200 && mouseX < posX+bredde+200 && mouseY > posY && mouseY < posY+hoejde) {
+        println("CLOCK");
+        online = false;
+        offline = true;
       }
     }
   }
@@ -80,5 +97,5 @@ class Menu {
    void goToLevel2() {
    level= 2;
    }
-   */  
+   */
 }

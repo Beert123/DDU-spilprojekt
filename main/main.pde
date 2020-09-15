@@ -16,9 +16,10 @@ Player player2 = new Player(50, 700, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 LevelGenerator gen2 = new LevelGenerator(2);
 DiamondsGenerator genD = new DiamondsGenerator(1);
+Menu menu;
 
 boolean server = true;
-boolean levelDrawn;
+boolean levelDrawn, ready;
 int levelId;
 
 //LEVEL 1
@@ -90,6 +91,8 @@ void setup() {
 
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
+  
+  menu = new Menu(50, 50, width/2-150, height/2-50, 100, 100);
 
   drips.add(new Drip(100, 320, 20, 1, 550));
 
@@ -111,7 +114,10 @@ void setup() {
 
 
 void draw() {
-  if (levelDrawn == false) {
+  menu.display();
+  menu.knap();
+  
+  if (levelDrawn == false && ready) {
     drawLevel(levelId);
     levelDrawn = true;
 
