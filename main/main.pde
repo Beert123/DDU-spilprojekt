@@ -148,8 +148,11 @@ void draw() {
     println("drawing");
 
     if (menu.offline) {
+      println("player as server");
       s = new Server(this, 12345);  // Start a simple server on a port
-    } else {
+    }
+
+    if (menu.online) {
       c = new Client(this, "172.20.10.4", 12345); // Replace with your server’s IP and port
     }
   }
