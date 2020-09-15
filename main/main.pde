@@ -51,7 +51,7 @@ int[] t = {1, 2, 1};
 
 //END LEVEL 1
 
-
+// Gravity implementering (påvirker alt i spillet)
 PVector gravity = new PVector(0, 0.30);
 
 void setup() {
@@ -62,17 +62,28 @@ void setup() {
 
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
+<<<<<<< Updated upstream
 
   //maal.add(new Maal(850, 50, 50, 50, 1));
   //maal.add(new Maal(780, 50, 50, 50, 2));
+=======
+  
+//Mål som reagerer på enten rød eller blå spiller (1 er blå hvor 2 er rød)
+  maal.add(new Maal(850, 50, 50, 50, 1));
+  maal.add(new Maal(780, 50, 50, 50, 2));
+>>>>>>> Stashed changes
 
   drips.add(new Drip(100, 320, 20, 1, 550));
   // menu.add(new Menu(200,200,200,200));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
+<<<<<<< Updated upstream
 
 
+=======
+// level generator
+>>>>>>> Stashed changes
   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
 
@@ -152,8 +163,12 @@ void draw() {
     }
   }
 
+<<<<<<< Updated upstream
   sendNetworkData();
   recieveNetworkData();
+=======
+ // sendNetworkdata();
+>>>>>>> Stashed changes
 }
 void keyPressed() {
   handlePress(keyCode, true);
