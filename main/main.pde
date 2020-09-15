@@ -14,9 +14,12 @@ ArrayList<Drip> drips = new ArrayList<Drip>();
 Player player1 = new Player(50, 600, 1, 30, 60);
 Player player2 = new Player(50, 700, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
+LevelGenerator gen2 = new LevelGenerator(2);
 DiamondsGenerator genD = new DiamondsGenerator(1);
 
 boolean server = true;
+boolean levelDrawn;
+int levelId;
 
 //LEVEL 1
 
@@ -47,6 +50,31 @@ int[] t = {1, 2, 1};
 
 //END LEVEL 1
 
+// LEVEL 2
+
+int[] ee1 = {0, 0, 0, 0};
+int[] ee2 = {5, 1, 1, 1, 1, 1};
+int[] ee3 = {0, 1, 1, 1, 1, 0};
+int[] ee4 = {5, 1, 1, 1, 4, 1};
+int[] ee5 = {1, 1, 1, 1, 3, 1, 2, 1, 5};
+int[] ww1 = {200, 50, 150, 600};
+int[] ww2 = {100, 400, 200, 50, 150, 100};
+int[] ww3 = {200, 200, 50, 300, 150, 100};
+int[] ww4 = {150, 150, 50, 150, 150, 150};
+int[] ww5 = {220, -220, 220, 130, 100, 200, 100, 100, 150};
+int[] hh1 = {40, 60, 100, 40};
+int[] hh2 = {120, 40, 80, 100, 60, 40};
+int[] hh3 = {40, 40, 60, 40, 80, 40};
+int[] hh4 = {40, 40, 90, 40, 40, 40};
+int[] hh5 = {40, 20, 20, 40, 40, 40, 40, 40, 100};
+int[] yy1 = {110, 90, 110, 110};
+int[] yy2 = {200, 280, 240, 240, 280, 300};
+int[] yy3 = {400, 400, 400, 420, 420, 460};
+int[] yy4 = {550, 550, 550, 600, 600, 600};
+int[] yy5 = {760, 670, 670, 760, 760, 760, 760, 760, 700};
+
+// END LEVEL 2
+
 
 PVector gravity = new PVector(0, 0.30);
 
@@ -58,6 +86,7 @@ void setup() {
 
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
+  levelId = 1;
 
   maal.add(new Maal(850, 50, 50, 50, 1));
   maal.add(new Maal(780, 50, 50, 50, 2));
@@ -65,12 +94,12 @@ void setup() {
   drips.add(new Drip(100, 320, 20, 1, 550));
 
   buttons.add(new Button(650, 400, 8));
-  buttons.add(new Button(170, 740, 8));
+  buttons.add(new Button(780, 260, 8));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
 
-  gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+  //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
   if (server) {
     s = new Server(this, 12345);  // Start a simple server on a port
@@ -82,89 +111,101 @@ void setup() {
 
 
 void draw() {
-  background(255);
-  //println(player1.point);
-  //println(player2.point);
+  if (levelDrawn == false) {
+    drawLevel(levelId);
+    levelDrawn = true;
 
-  for (int i = 0; i < buttons.size(); i++) {
-    Button b = buttons.get(i);
+    println("drawing");
+  }
 
-    b.display();
-  }
-  
-  if (!buttons.get(0).down) {
-    buttons.get(1).checkStep();
-  }
-  
-  if (!buttons.get(1).down) {
-    buttons.get(0).checkStep();
-  }
-  for (int m = 0; m < maal.size(); m++) {
-    Maal n = maal.get(m);
-    n.display();
-    n.collision(player1);
-    n.collision(player2);
-  }
-  for (int i = 0; i < drips.size(); i++) {
-    Drip d = drips.get(i);
+  if (levelDrawn) {
 
-    d.display();
-    d.update();
-    d.collision(player1);
-    d.collision(player2);
-  }
-  for (int i = 0; i < liquids.size(); i++) {
-    Liquid l = liquids.get(i);
+    background(255);
 
-    l.display();
-    l.collision(player1);
-    l.collision(player2);
-  }
-  for (int i = 0; i < diamonds.size(); i++) {
-    Diamond d = diamonds.get(i);
+    //println(player1.point);
+    //println(player2.point);
 
-    d.display();
-    d.collision(player1);
-    d.collision(player2);
-    //d.pointCollect(player1);
-    //d.pointCollect(player2);
-  }
-  for (int i = 0; i < platforms.size(); i++) {
-    Platform p = platforms.get(i);
+    for (int i = 0; i < buttons.size(); i++) {
+      Button b = buttons.get(i);
 
-    platforms.get(i).display();
-    platforms.get(i).collision(player1, i);
-    platforms.get(i).collision(player2, i);
-  }
-  player1.applyForce(gravity);
-  player1.update();
-  player1.display();
-  player1.checkEdges();
-  player2.applyForce(gravity);
-  player2.update();
-  player2.display();
-  player2.checkEdges();
-  timer();
+      b.display();
+    }
 
-  if (player1.isAlive == false || player2.isAlive == false) {
-    player1.revive();
-    player2.revive();
+    if (!buttons.get(0).down) {
+      buttons.get(1).checkStep();
+    }
+
+    if (!buttons.get(1).down) {
+      buttons.get(0).checkStep();
+    }
+    for (int m = 0; m < maal.size(); m++) {
+      Maal n = maal.get(m);
+      n.display();
+      n.collision(player1);
+      n.collision(player2);
+    }
+    for (int i = 0; i < drips.size(); i++) {
+      Drip d = drips.get(i);
+
+      d.display();
+      d.update();
+      d.collision(player1);
+      d.collision(player2);
+    }
+    for (int i = 0; i < liquids.size(); i++) {
+      Liquid l = liquids.get(i);
+
+      l.display();
+      l.collision(player1);
+      l.collision(player2);
+    }
     for (int i = 0; i < diamonds.size(); i++) {
       Diamond d = diamonds.get(i);
-      d.reset();
+
+      d.display();
+      d.collision(player1);
+      d.collision(player2);
+      //d.pointCollect(player1);
+      //d.pointCollect(player2);
     }
-  }
 
-  sendNetworkData();
-  recieveNetworkData();
+    for (int i = 0; i < platforms.size(); i++) {
+      Platform p = platforms.get(i);
 
-  switch(level) {
-  case 1:
-    level1();
-    break;
-  case 2:
-    level2();
-    break;
+      platforms.get(i).display();
+      platforms.get(i).collision(player1, i);
+      platforms.get(i).collision(player2, i);
+    }
+    player1.applyForce(gravity);
+    player1.update();
+    player1.display();
+    player1.checkEdges();
+    player2.applyForce(gravity);
+    player2.update();
+    player2.display();
+    player2.checkEdges();
+    timer();
+
+    if (player1.isAlive == false || player2.isAlive == false) {
+      player1.revive();
+      player2.revive();
+      for (int i = 0; i < diamonds.size(); i++) {
+        Diamond d = diamonds.get(i);
+        d.reset();
+      }
+    }
+
+    sendNetworkData();
+    recieveNetworkData();
+
+    switch(level) {
+    case 1:
+      level1();
+      break;
+    case 2:
+      level2();
+      break;
+    }
   }
 }
 void level1() {
@@ -182,6 +223,15 @@ void goToLevel2() {
 }
 
 void keyPressed() {
+  if (key == 'n') {
+    levelId = 2;
+    clearLevel();
+  }
+
+  if (key == 'm') {
+    gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+    println("gen");
+  }
   handlePress(keyCode, true);
 }
 
@@ -275,4 +325,28 @@ void timer() {
   fill(159, 11, 10);
   textSize(50);
   text(m/1000, 40, 40);
+}
+
+void drawLevel(int lvl) {
+  switch(lvl) {
+  case 1:
+    gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+    println("level 1!");
+    break;
+  case 2:
+    gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
+    println("level 2!");
+    break;
+  }
+
+  levelDrawn = true;
+}
+
+void clearLevel() {
+  levelDrawn = false;
+
+  platforms.clear();
+  liquids.clear();
+
+  drawLevel(2);
 }
