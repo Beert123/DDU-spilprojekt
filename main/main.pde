@@ -139,7 +139,7 @@ void draw() {
       buttons.get(0).checkStep();
     }
     for (int i = 0; i < maal.size(); i++) {
-      Maal m = maal.get(m);
+      Maal m = maal.get(i);
       
       m.display();
       m.collision(player1);
