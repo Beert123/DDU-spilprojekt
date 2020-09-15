@@ -7,11 +7,13 @@ class Player {
 
   boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive, hasBoost, inLiquid;
 
-  float groundY;
+  float groundY, x, y;
 
   color playerColor;
 
-  Player(float x, float y, int t, int bredde, int hoejde) {
+  Player(float x_, float y_, int t, int bredde, int hoejde) {
+    x = x_;
+    y = y_;
     type = t;
     location = new PVector(x, y);
     realLocation = new PVector(x, y);
@@ -131,7 +133,8 @@ class Player {
 
   void revive() {
     point = 0;
-    location.set(100, 650);
+    location.set(x, y);
+    inLiquid = false;
     isAlive = true;
   }
 

@@ -78,7 +78,6 @@ class Liquid {
     }
     if (p.location.y < yg+hg && p.location.y > yg && p.location.x+30 > x && p.location.x < x+w) {
       p.velocity.y = p.velocity.y*-0.7;
-      p.inLiquid = true;
     }
   }
 }
