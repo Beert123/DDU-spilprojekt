@@ -292,7 +292,7 @@ void recieveNetworkData() {
   Player p1 = player1;
   Player p2 = player2;
 
-  if (server) {
+  if (menu.offline) {
 
     c = s.available();
     if (c != null) {
@@ -333,7 +333,7 @@ void sendNetworkData() {
   Player p1 = player1;
   Player p2 = player2;
 
-  if (server) {
+  if (menu.offline) {
     s.write(p1.location.x + " " + p1.location.y + "\n");
   } else {
     c.write(p2.location.x + " " + p2.location.y + "\n");
