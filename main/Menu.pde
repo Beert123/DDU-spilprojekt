@@ -6,6 +6,8 @@ class Menu {
 
   boolean online, offline, lvl1, lvl2, hover1, hover2;
 
+  color c1, c2, c3, c4, c5;
+
   Menu(int x1, int y1, int x2, int y2, int w, int h) {
 
     posX = x1;
@@ -15,20 +17,28 @@ class Menu {
     bredde = w;
     hoejde = h;
     levelStart = false;
+    c1 = 255;
+    c2 = 255;
+    c3 = 255;
+    c4 = 255;
+    c5 = 255;
   }
 
   void display() {
     //translate(width/2-150, height/2-50);
     //rectMode(CENTER);
     //textMode(CENTER);
-    
-    fill(255);
-
+    fill(c1);
     rect(posX, posY, bredde, hoejde);
+    fill(c2);
     rect(posX+200, posY, bredde, hoejde);
+    fill(c3);
     rect(posX2, posY2, bredde, hoejde);
+    fill(c4);
     rect(posX2+200, posY2, bredde, hoejde);
+    fill(c5);
     rect(posX2+400, posY2, bredde, hoejde);
+    rect(posX2+200, posY2+200, bredde, hoejde);
     fill(0);
     textSize(18);
     text("Online", posX+20, posY+55);
@@ -40,6 +50,20 @@ class Menu {
   }
 
   void knap() {
+    if (!online) {
+      if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
+        c1 = 175;
+      } else {
+        c1 = 255;
+      }
+    }
+    if (!offline) {
+      if (mouseX > posX+200 && mouseX < posX+bredde+200 && mouseY > posY && mouseY < posY+hoejde) {
+        c2 = 175;
+      } else {
+        c2 = 255;
+      }
+    }
     if (mousePressed) {
       println(mouseX, mouseY);
       if (mouseX > posX && mouseX < posX+bredde && mouseY > posY && mouseY < posY+hoejde) {
@@ -63,6 +87,18 @@ class Menu {
       if (mouseX > posX2+400 && mouseX < posX2+bredde+400 && mouseY > posY2 && mouseY < posY2+hoejde) {
         println("LVL3");
       }
+      if(mouseX > posX2+200 && mouseX < posX2+200+bredde && mouseY > posY2+200 && mouseY < posY2+200+hoejde){
+        println("ready");
+        ready = true;
+      }
+      if (online) {
+        c1 = 175;
+        c2 = 255;
+      }
+      if (offline) {
+        c1 = 255;
+        c2 = 175;
+      }
     }
   }
 
@@ -81,21 +117,21 @@ class Menu {
    level2();
    break;
    }
-   
+
    void menu(){
    }
-   
+
    void level1() {
    if (isThisANewLevel) {
    gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
    genD.generateDiamonds(x, y, t, 3);
    isThisANewLevel = false;
    }
-   
-   
+
+
    for(int i = 0; i < maal.size(); i++){
    Maal m = maal.get(i);
-   
+
    m.collision(player1);
    m.collision(player2);
    if(maal1.sejr1 && maal2.sejr2){
@@ -103,16 +139,16 @@ class Menu {
    }
    }
    }
-   
+
    void level2() {
    clear();
-   
+
    }
-   
+
    void goToLevel1(){
-   level =1; 
+   level =1;
    }
-   
+
    void goToLevel2() {
    level= 2;
    }
