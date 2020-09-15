@@ -1,5 +1,5 @@
 import processing.net.*;
-int level;
+int level=0;
 Server s; 
 Client c;
 String input;
@@ -10,12 +10,17 @@ ArrayList<Maal> maal = new ArrayList<Maal>();
 ArrayList<Liquid> liquids = new ArrayList<Liquid>();
 ArrayList<Diamond> diamonds = new ArrayList<Diamond>();
 ArrayList<Drip> drips = new ArrayList<Drip>();
+ArrayList<Menu> menu = new ArrayList<Menu>();
 Player player1 = new Player(100, 650, 1, 30, 60);
 Player player2 = new Player(50, 650, 2, 30, 60);
 LevelGenerator gen = new LevelGenerator(1);
 DiamondsGenerator genD = new DiamondsGenerator(1);
+Maal maal1 = new Maal(850, 50, 50, 50, 1);
+Maal maal2 = new Maal(780, 50, 50, 50, 2);
+
 
 boolean server = true;
+
 
 //LEVEL 1
 
@@ -58,16 +63,19 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
 
-  maal.add(new Maal(850, 50, 50, 50, 1));
-  maal.add(new Maal(780, 50, 50, 50, 2));
-  
+  //maal.add(new Maal(850, 50, 50, 50, 1));
+  //maal.add(new Maal(780, 50, 50, 50, 2));
+
   drips.add(new Drip(100, 320, 20, 1, 550));
+  // menu.add(new Menu(200,200,200,200));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
 
+
   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
+
   if (server) {
     s = new Server(this, 12345);  // Start a simple server on a port
   } else {
@@ -88,9 +96,9 @@ void draw() {
     n.collision(player1);
     n.collision(player2);
   }
-  for (int i = 0; i < drips.size();i++){
+  for (int i = 0; i < drips.size(); i++) {
     Drip d = drips.get(i);
-    
+
     d.display();
     d.update();
     d.collision(player1);
@@ -119,6 +127,12 @@ void draw() {
     platforms.get(i).collision(player1, i);
     platforms.get(i).collision(player2, i);
   }
+
+  for (int i = 0; i < menu.size(); i++) {
+    Menu m =menu.get(i);
+    m.display(); 
+    m.knap();
+  }
   player1.applyForce(gravity);
   player1.update();
   player1.display();
@@ -140,33 +154,7 @@ void draw() {
 
   sendNetworkData();
   recieveNetworkData();
-  
-  switch(level){
-   case 1:
-   level1();
-   break;
-   case 2:
-   level2();
-   break;
-  }
-    
-  }
-  void level1(){
-    
-    
-    
-    goToLevel2();
-  }
-
-  void level2(){
-   
-    
-  }
-  
-  void goToLevel2(){
-   level= 2; 
-  }
-
+}
 void keyPressed() {
   handlePress(keyCode, true);
 }
