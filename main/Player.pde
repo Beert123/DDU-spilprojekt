@@ -4,7 +4,8 @@ class Player {
   PVector acceleration;
   PVector realLocation;
   int type, point, h, w; // 1 is water, 2 is fire
-  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive, hasBoost;
+
+  boolean isRight, isLeft, isJumping, isDucking, isMidAir, isOnPlatform, isAlive, hasBoost, inLiquid;
 
   float groundY;
 
@@ -23,10 +24,11 @@ class Player {
     isMidAir = false;
     isJumping = false;
     isOnPlatform = true;
+    inLiquid = false;
 
     h = hoejde;
     w = bredde;
-    
+
     point = 0;
     groundY = 760;
 
@@ -42,7 +44,7 @@ class Player {
       fill(playerColor);
       stroke(0);
       rect(location.x, location.y, w, h);
-      
+
       if (hasBoost) {
         fill(255, 223, 0);
         ellipse(location.x+40, location.y+20, 15, 15);
@@ -57,13 +59,23 @@ class Player {
 
   void moveLeft() {
     if (location.x >= 2) {
-      location.add(-4, 0);
+      println("hey");
+      if (inLiquid) {
+        println("hey2");
+        location.add(-2, 0);
+      } else {
+        location.add(-4, 0);
+      }
     }
   }
 
   void moveRight() {
     if (location.x <= width - 10) {
-      location.add(4, 0);
+      if (inLiquid) {
+        location.add(2, 0);
+      } else {
+        location.add(4, 0);
+      }
     }
   }
 
@@ -80,6 +92,7 @@ class Player {
       hasBoost = false;
       isMidAir = true;
       isOnPlatform = false;
+      inLiquid = false;
       //println("Jumped!");
     }
   }
@@ -98,6 +111,8 @@ class Player {
     if (velocity.y > 6) {
       velocity.y = 6;
     }
+    
+    //if(velocity.y >)
 
     if (location.y > groundY) {
       isMidAir = false;
@@ -116,7 +131,7 @@ class Player {
 
   void revive() {
     point = 0;
-    location.set(100,650);
+    location.set(100, 650);
     isAlive = true;
   }
 
