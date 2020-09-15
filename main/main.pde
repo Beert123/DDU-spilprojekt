@@ -145,6 +145,11 @@ void draw() {
 
   if (levelDrawn == false && menu.ready) {
     levelId = menu.levelId;
+    
+    if (menu.offline) {
+      server = false;
+    }
+    
     println("Fetched lvl ID: "+menu.levelId);
     drawLevel(levelId);
     levelDrawn = true;
