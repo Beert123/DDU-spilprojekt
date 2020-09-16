@@ -373,7 +373,8 @@ void drawLevel(int lvl) {
     maal.add(new Maal(100, 50, 50, 50, 1));
     maal.add(new Maal(180, 50, 50, 50, 2));
     drips.add(new Drip(100, 320, 20, 1, 550));
-    gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
+    //gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
+    gen2.loadFile("level2.txt");
     println("level 2!");
     break;
   case 3:

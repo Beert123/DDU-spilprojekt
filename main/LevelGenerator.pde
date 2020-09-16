@@ -2,8 +2,26 @@ class LevelGenerator {
   int level;
   int x1, x2, x3, x4, x5;
 
+  int parsedData[][];
+
   LevelGenerator(int l) {
     level = l;
+  }
+
+  void loadFile(String fileName) {
+    String[] lines = loadStrings(fileName);
+    println("Loading level file " + fileName + " with " + lines.length + " lines!");
+    for (int i = 0; i > lines.length; i++) {
+      int[] buffer = int(split(lines[i], ','));
+      for (int u = 0; u > buffer.length; u++) {
+        parsedData[i][u] = buffer[u];
+      }
+    }
+    
+    println("Loading complete, generating level...");
+    println(parsedData[0][1],parsedData[0][2],parsedData[0][2]);
+    
+    generateLevel(parsedData[0], parsedData[1], parsedData[2], parsedData[3], parsedData[4], parsedData[5], parsedData[6], parsedData[7], parsedData[8], parsedData[9], parsedData[10], parsedData[11], parsedData[12], parsedData[13], parsedData[14], parsedData[15], parsedData[16], parsedData[17], parsedData[18], parsedData[19]);
   }
 
   void generateLevel(int[] e1, int[] e2, int[] e3, int[] e4, int[] e5, int[] w1, int[] w2, int[] w3, int[] w4, int[] w5, int[] h1, int[] h2, int[] h3, int[] h4, int[] h5, int[] y1, int[] y2, int[] y3, int[] y4, int[] y5) {
