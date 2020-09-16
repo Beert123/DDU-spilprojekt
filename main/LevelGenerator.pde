@@ -11,16 +11,24 @@ class LevelGenerator {
   void loadFile(String fileName) {
     String[] lines = loadStrings(fileName);
     println("Loading level file " + fileName + " with " + lines.length + " lines!");
-    for (int i = 0; i > lines.length; i++) {
-      int[] buffer = int(split(lines[i], ','));
-      for (int u = 0; u > buffer.length; u++) {
-        parsedData[i][u] = buffer[u];
+    
+    parsedData = new int[lines.length][lines.length];
+    
+    for (int i = 0; i < lines.length; i++) {
+      println(lines[i]);
+      String[] buffer = split(lines[i], ',');
+
+      //println("Yo mama is fat " + buffer[0], buffer[1], buffer[2]);
+
+      for (int u = 0; u < buffer.length; u++) {
+        println(Integer.parseInt(trim(buffer[u])));
+        parsedData[i][u] = Integer.parseInt(trim(buffer[u]));
       }
     }
-    
+
     println("Loading complete, generating level...");
-    println(parsedData[0][1],parsedData[0][2],parsedData[0][2]);
-    
+    println(parsedData[0][1], parsedData[0][2], parsedData[0][2]);
+
     generateLevel(parsedData[0], parsedData[1], parsedData[2], parsedData[3], parsedData[4], parsedData[5], parsedData[6], parsedData[7], parsedData[8], parsedData[9], parsedData[10], parsedData[11], parsedData[12], parsedData[13], parsedData[14], parsedData[15], parsedData[16], parsedData[17], parsedData[18], parsedData[19]);
   }
 
