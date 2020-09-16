@@ -13,7 +13,7 @@ class Liquid {
 
     hl = h * 3/4;
     yg = y + h * 3/4; 
-    hg = h/4;
+    hg = h/4-1;
   }
 
   void display() {

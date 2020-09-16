@@ -72,13 +72,14 @@ class Platform {
       p.velocity.set(0, 0);
 
       if (booster && timeToBoost < 0.01) {
-        p.hasBoost = true;
+          p.hasBoost = true;
         timeToBoost = 2*PI;
       }
     }
 
     // headbutt
     if (p.location.y < ypos+sizey && p.location.y > ypos && p.location.x+30 > xpos+xmove && p.location.x < xpos+sizex+xmove) {
+      p.location.y = ypos+sizey;
       p.velocity.y = p.velocity.y*-1;
     }
   }
