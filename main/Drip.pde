@@ -27,7 +27,7 @@ class Drip {
         ellipse(location.x, location.y, diameter, diameter);
       }
       if (state == 2) {
-        fill(0, 0, 255);
+        fill(255, 0, 0);
         ellipse(location.x, location.y, diameter, diameter);
       }
       if (state == 3) {
