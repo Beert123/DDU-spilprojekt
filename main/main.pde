@@ -386,9 +386,10 @@ void drawLevel(int lvl) {
     maal.add(new Maal(550, 25, 50, 50, 1));
     drips.add(new Drip(200, 0, 20, 1, 100));
     drips.add(new Drip(800, 0, 20, 2, 100));
-    gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
+    //gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
+    gen3.loadFile("level3.txt");
     println("level 3!");
-    
+
     player1.location.set(440, 680);
     player2.location.set(530, 500);
     break;
