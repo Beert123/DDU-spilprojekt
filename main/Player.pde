@@ -111,7 +111,7 @@ class Player {
     if (velocity.y > 6) {
       velocity.y = 6;
     }
-    
+
     if (location.y > groundY) {
       isMidAir = false;
       location.y = groundY;
@@ -129,9 +129,22 @@ class Player {
 
   void revive() {
     point = 0;
-    location.set(x, y);
     inLiquid = false;
     isAlive = true;
+    if (menu.levelId == 1) {
+      location.set(x, y);
+    }
+    if (menu.levelId == 2) {
+      location.set(x, y);
+    }
+    if (menu.levelId == 3) {
+      if (type == 1) {
+        location.set(440, 680);
+      }
+      if (type == 2) {
+        location.set(530, 500);
+      }
+    }
   }
 
   void checkEdges() {

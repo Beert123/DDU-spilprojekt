@@ -378,10 +378,10 @@ void drawLevel(int lvl) {
     println("level 2!");
     break;
   case 3:
-    buttons.add(new Button(760, 400, 8));
-    buttons.add(new Button(780, 260, 8));
-    buttons.add(new Button(760, 400, 12));
-    buttons.add(new Button(780, 260, 12));
+    buttons.add(new Button(650, 740, 15));
+    buttons.add(new Button(650, 540, 15));
+    buttons.add(new Button(300, 740, 19));
+    buttons.add(new Button(300, 540, 19));
     maal.add(new Maal(400, 25, 50, 50, 2));
     maal.add(new Maal(550, 25, 50, 50, 1));
     drips.add(new Drip(200, 0, 20, 1, 100));
