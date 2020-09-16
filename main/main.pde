@@ -54,26 +54,26 @@ int[] t = {1, 2, 1};
 
 // LEVEL 2
 
-int[] ee1 = {0, 0, 0, 0};
-int[] ee2 = {5, 1, 1, 1, 1, 1};
-int[] ee3 = {0, 1, 1, 1, 1, 0};
-int[] ee4 = {5, 1, 1, 1, 4, 1};
-int[] ee5 = {1, 1, 1, 1, 3, 1, 2, 1, 5};
-int[] ww1 = {200, 50, 150, 600};
-int[] ww2 = {100, 400, 200, 50, 150, 100};
-int[] ww3 = {200, 200, 50, 300, 150, 100};
-int[] ww4 = {150, 150, 50, 150, 150, 150};
-int[] ww5 = {220, -220, 220, 130, 100, 200, 100, 100, 150};
-int[] hh1 = {40, 60, 100, 40};
-int[] hh2 = {120, 40, 80, 100, 60, 40};
+int[] ee1 = {1, 0, 1, 1, 1};
+int[] ee2 = {0, 1, 4, 1, 4, 1, 1, 1};
+int[] ee3 = {1, 1};
+int[] ee4 = {0, 1, 3, 1, 0, 1, 2, 1};
+int[] ee5 = {1, 2, 1, 3, 1, 1};
+int[] ww1 = {400, 150, 250, 50, 75};
+int[] ww2 = {200, 50, 200, 150, 150, 75, 75, 100};
+int[] ww3 = {100, 800};
+int[] ww4 = {200, 20, 160, 20, 200, 20, 160, 20};
+int[] ww5 = {160, 280, 120, 280, 60, 100};
+int[] hh1 = {40, 60, 100, 40, 40};
+int[] hh2 = {120, 40, 80, 100, 60, 40, 40, 40};
 int[] hh3 = {40, 40, 60, 40, 80, 40};
-int[] hh4 = {40, 40, 90, 40, 40, 40};
-int[] hh5 = {40, 20, 20, 40, 40, 40, 40, 40, 100};
-int[] yy1 = {110, 90, 110, 110};
-int[] yy2 = {200, 280, 240, 240, 280, 300};
-int[] yy3 = {400, 400, 400, 420, 420, 460};
-int[] yy4 = {550, 550, 550, 600, 600, 600};
-int[] yy5 = {760, 670, 670, 760, 760, 760, 760, 760, 700};
+int[] hh4 = {40, 40, 40, 40, 40, 40, 40, 40};
+int[] hh5 = {40, 40, 40, 40, 40, 100};
+int[] yy1 = {110, 90, 110, 110, 110};
+int[] yy2 = {200, 280, 240, 240, 280, 300, 280, 280};
+int[] yy3 = {400, 400};
+int[] yy4 = {680, 680, 680, 680, 680, 680, 680, 680};
+int[] yy5 = {760, 760, 760, 760, 760, 700};
 
 // END LEVEL 2
 
@@ -88,12 +88,12 @@ int[] www1 = {200, 50, 150, 600};
 int[] www2 = {100, 400, 200, 50, 150, 100};
 int[] www3 = {200, 200, 50, 300, 150, 100};
 int[] www4 = {150, 150, 50, 150, 150, 150};
-int[] www5 = {220, -220, 220, 130, 100, 200, 100, 100, 150};
+int[] www5 = {200, 200, 200, 200, 100, 100};
 int[] hhh1 = {40, 60, 100, 40};
 int[] hhh2 = {120, 40, 80, 100, 60, 40};
 int[] hhh3 = {40, 40, 60, 40, 80, 40};
 int[] hhh4 = {40, 40, 90, 40, 40, 40};
-int[] hhh5 = {40, 20, 20, 40, 40, 40, 40, 40, 100};
+int[] hhh5 = {40, 40, 40, 40, 40, 100};
 int[] yyy1 = {110, 90, 110, 110};
 int[] yyy2 = {200, 280, 240, 240, 280, 300};
 int[] yyy3 = {400, 400, 400, 420, 420, 460};
@@ -115,15 +115,8 @@ void setup() {
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
   levelId = 1;
 
-  maal.add(new Maal(850, 50, 50, 50, 1));
-  maal.add(new Maal(780, 50, 50, 50, 2));
-
   menu = new Menu(50, 50, width/2-250, height/2-50, 100, 100);
 
-  drips.add(new Drip(100, 320, 20, 1, 550));
-
-  buttons.add(new Button(650, 400, 8));
-  buttons.add(new Button(780, 260, 8));
   //platforms.add(new Platform(470, 650, 0, 1, 200, 50));
   //liquids.add(new Liquid(200, 500, 200, 50, 1));
 
@@ -157,7 +150,7 @@ void draw() {
     }
   }
 
-  if (levelDrawn) {
+  if (levelDrawn == true) {
 
     background(255);
 
@@ -169,13 +162,14 @@ void draw() {
 
       b.display();
     }
+    if (buttons.size() > 0) {
+      if (!buttons.get(0).down) {
+        buttons.get(1).checkStep();
+      }
 
-    if (!buttons.get(0).down) {
-      buttons.get(1).checkStep();
-    }
-
-    if (!buttons.get(1).down) {
-      buttons.get(0).checkStep();
+      if (!buttons.get(1).down) {
+        buttons.get(0).checkStep();
+      }
     }
     for (int i = 0; i < maal.size(); i++) {
       Maal m = maal.get(i);
@@ -353,14 +347,29 @@ void timer() {
 void drawLevel(int lvl) {
   switch(lvl) {
   case 1:
+    buttons.add(new Button(650, 400, 8));
+    buttons.add(new Button(780, 260, 8));
+    maal.add(new Maal(850, 50, 50, 50, 1));
+    maal.add(new Maal(780, 50, 50, 50, 2));
+    drips.add(new Drip(100, 320, 20, 1, 550));
     gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+
     println("level 1!");
+    
     break;
   case 2:
+    buttons.add(new Button(650, 400, 8));
+    buttons.add(new Button(780, 260, 8));
+    maal.add(new Maal(850, 50, 50, 50, 1));
+    maal.add(new Maal(780, 50, 50, 50, 2));
+    drips.add(new Drip(100, 320, 20, 1, 550));
     gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
     println("level 2!");
     break;
   case 3:
+    maal.add(new Maal(850, 50, 50, 50, 1));
+    maal.add(new Maal(780, 50, 50, 50, 2));
+    drips.add(new Drip(100, 320, 20, 1, 550));
     gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
     println("level 3!");
     break;
@@ -377,6 +386,8 @@ void clearLevel() {
 
   platforms.clear();
   liquids.clear();
+  buttons.clear();
+  maal.clear();
 
   drawLevel(levelId);
 }
