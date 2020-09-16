@@ -170,13 +170,14 @@ void draw() {
       if (!buttons.get(1).down) {
         buttons.get(0).checkStep();
       }
+      if (buttons.size() > 2) {
+        if (!buttons.get(2).down) {
+          buttons.get(3).checkStep();
+        }
 
-      if (!buttons.get(2).down) {
-        buttons.get(3).checkStep();
-      }
-
-      if (!buttons.get(3).down) {
-        buttons.get(2).checkStep();
+        if (!buttons.get(3).down) {
+          buttons.get(2).checkStep();
+        }
       }
     }
     for (int i = 0; i < maal.size(); i++) {
