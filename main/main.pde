@@ -11,7 +11,21 @@ int rows;
 PImage platformImg;
 PImage diamondred;
 PImage diamondblue;
+
 PImage dripBlue;
+PImage[] sprites1 = new PImage[2*2];
+PImage[] sprites2 = new PImage[2*2];
+PImage[] sprites3 = new PImage[2*2];
+PImage[] sprites4 = new PImage[2*2];
+PImage watergirlleft;
+PImage watergirlright;
+PImage watergirlstill;
+PImage fireboyleft;
+PImage fireboyright;
+PImage fireboystill;
+PImage boostImg;
+
+
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -145,7 +159,7 @@ void setup() {
 
   //platformImg = loadImage("platform4.png");
 
-  backgroundimage = loadImage("background.png");
+  backgroundimage = loadImage("assets/background.png");
   cols = width/backgroundimage.width;
   rows = height/backgroundimage.height;
   if ( backgroundimage.width%width > 0) {
@@ -154,10 +168,49 @@ void setup() {
   if ( backgroundimage.height%height > 0) {
     rows++;
   }
+  watergirlleft = loadImage("assets/watergirlleft.png");
+  int Wsprite1 = watergirlleft.width/2;
+  int Hsprite1 = watergirlleft.height/2;
+  for (int i=0; i<sprites1.length; i++) {
+    int x = i%2*Wsprite1;
+    int y = i/2*Hsprite1;
+    sprites1[i] = watergirlleft.get(x, y, Wsprite1, Hsprite1);
+  }
+  watergirlright = loadImage("assets/watergirlright.png");
+  int Wsprite2 = watergirlright.width/2;
+  int Hsprite2 = watergirlright.height/2;
+  for (int i=0; i<sprites2.length; i++) {
+    int x = i%2*Wsprite2;
+    int y = i/2*Hsprite2;
+    sprites2[i] = watergirlright.get(x, y, Wsprite2, Hsprite2);
+  }
+  watergirlstill = loadImage("assets/watergirlstill.png");
+
+  fireboyleft = loadImage("assets/fireboyleft.png");
+  int Wsprite3 = fireboyleft.width/2;
+  int Hsprite3 = fireboyleft.height/2;
+  for (int i=0; i<sprites3.length; i++) {
+    int x = i%2*Wsprite3;
+    int y = i/2*Hsprite3;
+    sprites3[i] = fireboyleft.get(x, y, Wsprite3, Hsprite3);
+  }
+  fireboyright = loadImage("assets/fireboyright.png");
+  int Wsprite4 = fireboyright.width/2;
+  int Hsprite4 = fireboyright.height/2;
+  for (int i=0; i<sprites2.length; i++) {
+    int x = i%2*Wsprite2;
+    int y = i/2*Hsprite2;
+    sprites4[i] = fireboyright.get(x, y, Wsprite4, Hsprite4);
+  }
+  fireboystill = loadImage("assets/fireboystill.png");
 
   diamondred = loadImage("diamantred.png");
   diamondblue = loadImage("diamantblue.png");
+
   dripBlue = loadImage("dripBlue.png");
+
+  boostImg = loadImage("boostgrafik.png");
+
 }
 
 void draw() {
