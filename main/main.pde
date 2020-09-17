@@ -18,6 +18,8 @@ LevelGenerator gen = new LevelGenerator(1);
 LevelGenerator gen2 = new LevelGenerator(2);
 LevelGenerator gen3 = new LevelGenerator(3);
 DiamondsGenerator genD = new DiamondsGenerator(1);
+DiamondsGenerator genD2 = new DiamondsGenerator(2);
+DiamondsGenerator genD3 = new DiamondsGenerator(3);
 Menu menu;
 
 boolean server = true;
@@ -107,7 +109,7 @@ int[] yyy5 = {760, 600, 760};
 
 int[] xxx = {100, 900, 375, 600, 60, 940};
 int[] yyy = {690, 690, 195, 195, 360, 360};
-int[] ttt = {2, 1, 2, 1, 2, 1};
+int[] ttt = {2, 1, 1, 2, 2, 1};
 
 // END LEVEL 3
 
@@ -131,7 +133,7 @@ void setup() {
 
 
   //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
-  genD.generateDiamonds(x, y, t, 3);
+  //genD.generateDiamonds(x, y, t, 3);
   firstInit = true;
 
   platformImg = loadImage("platform.png");
@@ -392,7 +394,7 @@ void drawLevel(int lvl) {
     //gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
     gen2.loadFile("level2.txt");
     println("level 2!");
-    genD.generateDiamonds(xx, yy, tt, 6);
+    genD2.generateDiamonds(xx, yy, tt, 6);
     break;
   case 3:
     buttons.add(new Button(650, 740, 15));
@@ -406,7 +408,7 @@ void drawLevel(int lvl) {
     //gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
     gen3.loadFile("level3.txt");
     println("level 3!");
-    genD.generateDiamonds(xxx, yyy, ttt, 6);
+    genD3.generateDiamonds(xxx, yyy, ttt, 6);
 
     player1.location.set(440, 680);
     player2.location.set(530, 500);
@@ -437,6 +439,7 @@ void handleWin() {
   buttons.clear();
   maal.clear();
   drips.clear();
+  diamonds.clear();
 
   player1.revive();
   player2.revive();
