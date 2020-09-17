@@ -7,12 +7,16 @@ float data[];
 PImage backgroundimage;
 int cols;
 int rows;
+int lastTime = millis();
+int lastTime2 = millis();
 
 PImage platformImg;
 PImage diamondred;
 PImage diamondblue;
 PImage dripBlue;
 PImage dripRed;
+PImage doorred;
+PImage doorblue;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -45,7 +49,7 @@ DiamondsGenerator genD3 = new DiamondsGenerator(3);
 Menu menu;
 
 boolean server = true;
-boolean levelDrawn, ready, firstInit;
+boolean levelDrawn, ready, firstInit, wait, wait2;
 int levelId;
 
 //LEVEL 1
@@ -147,6 +151,8 @@ void setup() {
   //platforms.add(new Platform(30, 650, 0, 1, 200, 50));
   //platforms.add(new Platform(250, 650, 0, 1, 200, 50));
   levelId = 1;
+  wait = true;
+  wait2 = true;
 
   menu = new Menu(50, 50, width/2-250, height/2-50, 100, 100);
 
@@ -212,11 +218,22 @@ void setup() {
   dripRed = loadImage("dripRed.png");
 
   boostImg = loadImage("boostgrafik.png");
+  
+  doorred = loadImage("doorred.png");
+  doorblue = loadImage("doorblue.png");
 
 }
 
 void draw() {
-  println(mouseX, mouseY);
+  //println(mouseX, mouseY);
+  if(wait){
+    lastTime = millis();
+  }
+  if(wait2){
+    lastTime2 = millis();
+  }
+  println(millis() - lastTime);
+  
   if (!menu.ready) {
     menu.display();
     menu.knap();
@@ -454,8 +471,8 @@ void drawLevel(int lvl) {
   case 1:
     buttons.add(new Button(650, 400, 8));
     buttons.add(new Button(780, 260, 8));
-    maal.add(new Maal(600, 700, 50, 50, 1));
-    maal.add(new Maal(500, 700, 50, 50, 2));
+    maal.add(new Maal(900, 30, 90, 90, 1));
+    maal.add(new Maal(800, 30, 90, 90, 2));
     drips.add(new Drip(100, 320, 20, 1, 550));
     //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
     gen.loadFile("level1.txt");
@@ -468,8 +485,8 @@ void drawLevel(int lvl) {
     buttons.add(new Button(780, 520, 14));
     buttons.add(new Button(250, 90, 1));
     buttons.add(new Button(700, 90, 1));
-    maal.add(new Maal(100, 50, 50, 50, 1));
-    maal.add(new Maal(180, 50, 50, 50, 2));
+    maal.add(new Maal(50, 30, 90, 90, 1));
+    maal.add(new Maal(130, 30, 90, 90, 2));
     drips.add(new Drip(90, 150, 20, 1, 460));
     //gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
     gen2.loadFile("level2.txt");
@@ -481,8 +498,8 @@ void drawLevel(int lvl) {
     buttons.add(new Button(650, 540, 15));
     buttons.add(new Button(300, 740, 19));
     buttons.add(new Button(300, 540, 19));
-    maal.add(new Maal(550, 25, 50, 50, 1));
-    maal.add(new Maal(400, 25, 50, 50, 2));
+    maal.add(new Maal(550, 15, 90, 90, 1));
+    maal.add(new Maal(360, 15, 90, 90, 2));
     drips.add(new Drip(200, 0, 20, 1, 100));
     drips.add(new Drip(800, 0, 20, 2, 100));
     //gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
