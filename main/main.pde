@@ -5,6 +5,8 @@ Client c;
 String input;
 float data[];
 PImage platformImg;
+PImage diamondred;
+PImage diamondblue;
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -137,6 +139,8 @@ void setup() {
   firstInit = true;
 
   platformImg = loadImage("platform.png");
+  diamondred = loadImage("diamantred.png");
+  diamondblue = loadImage("diamantblue.png");
 }
 
 void draw() {
