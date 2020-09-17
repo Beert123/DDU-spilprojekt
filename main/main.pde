@@ -11,6 +11,7 @@ int rows;
 PImage platformImg;
 PImage diamondred;
 PImage diamondblue;
+PImage dripBlue;
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -156,6 +157,7 @@ void setup() {
 
   diamondred = loadImage("diamantred.png");
   diamondblue = loadImage("diamantblue.png");
+  dripBlue = loadImage("dripBlue.png");
 }
 
 void draw() {
