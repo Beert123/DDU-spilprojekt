@@ -2,6 +2,8 @@ class Diamond {
   float x, y, w, h, state;
 
   boolean isCollected;
+  
+  PImage theDiamond;
 
   Diamond(float x_, float y_, float w_, float h_, float s) {
     x = x_;
@@ -15,15 +17,17 @@ class Diamond {
     if (state == 1) {
       if (isCollected == false) {
         stroke(0);
-        fill(0, 0, 255);
-        rect(x, y, w, h);
+        //fill(0, 0, 255);
+        //rect(x, y, w, h);
+        image(diamondblue, x-15, y-15, w+30, h+30);
       }
     }
     if (state == 2) {
       if (isCollected == false) {
         stroke(0);
-        fill(255, 0, 0);
-        rect(x, y, w, h);
+        //fill(255, 0, 0);
+        //rect(x, y, w, h);
+        image(diamondred, x-12.5, y-12.5, w+25, h+25);
       }
     }
   }
