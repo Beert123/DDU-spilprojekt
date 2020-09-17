@@ -45,7 +45,11 @@ class Player {
     if (isAlive) {
       fill(playerColor);
       stroke(0);
-      rect(location.x, location.y, w, h);
+      //rect(location.x, location.y, w, h);
+      if (!isLeft && !isRight) {
+        if (type == 1) image(watergirlstill, location.x-10, location.y-15, 50, 80);
+        if (type == 2) image(fireboystill, location.x-10, location.y-15, 50, 80);
+      }
 
       if (hasBoost) {
         fill(255, 223, 0);
@@ -53,9 +57,24 @@ class Player {
         fill(playerColor);
       }
 
-      if (isLeft) moveLeft();
-      if (isRight) moveRight();
-      if (isJumping) jump();
+      if (isLeft) { 
+        if (type == 1 && !isRight) image(sprites1[frameCount/5%sprites1.length], location.x-15, location.y-18, 90, 90);
+        if (type == 2 && !isRight) image(sprites3[frameCount/5%sprites1.length], location.x-30, location.y-18, 90, 90);
+        moveLeft();
+      }
+      if (isRight) {
+        if (type == 1 && !isLeft) image(sprites2[frameCount/5%sprites2.length], location.x-50, location.y-18, 90, 90);
+        if (type == 2 && !isLeft) image(sprites4[frameCount/5%sprites1.length], location.x-50, location.y-18, 90, 90);
+        moveRight();
+      }
+      if (isJumping) {
+        jump();
+      }
+
+      if (isLeft && isRight) {
+        if (type == 1) image(watergirlstill, location.x-10, location.y-15, 50, 80);
+        if (type == 2) image(fireboystill, location.x-10, location.y-15, 50, 80);
+      }
     }
   }
 
