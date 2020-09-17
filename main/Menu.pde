@@ -31,6 +31,7 @@ class Menu {
   }
 
   void display() {
+    background(255);
     //translate(width/2-150, height/2-50);
     //rectMode(CENTER);
     //textMode(CENTER);

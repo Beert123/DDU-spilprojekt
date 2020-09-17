@@ -4,6 +4,7 @@ Server s;
 Client c;
 String input;
 float data[];
+PImage platformImg;
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -20,7 +21,7 @@ DiamondsGenerator genD = new DiamondsGenerator(1);
 Menu menu;
 
 boolean server = true;
-boolean levelDrawn, ready;
+boolean levelDrawn, ready, firstInit;
 int levelId;
 
 //LEVEL 1
@@ -123,6 +124,9 @@ void setup() {
 
   //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
+  firstInit = true;
+  
+  platformImg = loadImage("platform.png");
 }
 
 void draw() {
@@ -140,12 +144,12 @@ void draw() {
 
     println("drawing");
 
-    if (menu.offline) {
+    if (menu.offline && firstInit) {
       println("player as server");
       s = new Server(this, 12345);  // Start a simple server on a port
     }
 
-    if (menu.online) {
+    if (menu.online && firstInit) {
       c = new Client(this, "172.20.10.4", 12345); // Replace with your server’s IP and port
     }
   }
@@ -188,6 +192,7 @@ void draw() {
       m.collision(player2);
 
       if (maal.get(0).sejr1 && maal.get(1).sejr2) {
+        println("win");
         handleWin();
       }
     }
@@ -358,8 +363,8 @@ void drawLevel(int lvl) {
   case 1:
     buttons.add(new Button(650, 400, 8));
     buttons.add(new Button(780, 260, 8));
-    maal.add(new Maal(850, 50, 50, 50, 1));
-    maal.add(new Maal(780, 50, 50, 50, 2));
+    maal.add(new Maal(600, 700, 50, 50, 1));
+    maal.add(new Maal(500, 700, 50, 50, 2));
     drips.add(new Drip(100, 320, 20, 1, 550));
     //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
     gen.loadFile("level1.txt");
@@ -400,6 +405,49 @@ void drawLevel(int lvl) {
 }
 
 void handleWin() {
+  menu.ready = false;
+  menu.lvl1c = false;
+  menu.lvl2c = false;
+  menu.lvl3c = false;
+  menu.rc = false;
+  menu.levelId = 1;
+
+  levelDrawn = false;
+  
+  if (s != null) {
+    s.stop();
+  } else {
+  c.stop();
+  }
+
+  platforms.clear();
+  liquids.clear();
+  buttons.clear();
+  maal.clear();
+  drips.clear();
+  
+  player1.revive();
+  player2.revive();
+  
+  gen.x1 = 0;
+  gen.x2 = 0;
+  gen.x3 = 0;
+  gen.x4 = 0;
+  gen.x5 = 0;
+  gen2.x1 = 0;
+  gen2.x2 = 0;
+  gen2.x3 = 0;
+  gen2.x4 = 0;
+  gen2.x5 = 0;
+  gen3.x1 = 0;
+  gen3.x2 = 0;
+  gen3.x3 = 0;
+  gen3.x4 = 0;
+  gen3.x5 = 0;
+  
+  background(255);
+  
+  println("handling win!");
 }
 
 void clearLevel() {
@@ -410,5 +458,6 @@ void clearLevel() {
   buttons.clear();
   maal.clear();
 
+  background(255);
   drawLevel(levelId);
 }

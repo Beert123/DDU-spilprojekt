@@ -40,6 +40,7 @@ class Platform {
     noStroke();
     fill(139, 69, 19);
     rect(xpos+xmove, ypos, sizex, sizey);
+    image(platformImg, xpos+xmove, ypos, sizex, sizey);
 
     if (booster) {
       fill(255, 223, 0);
