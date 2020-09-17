@@ -13,6 +13,8 @@ PImage diamondred;
 PImage diamondblue;
 PImage dripBlue;
 PImage dripRed;
+PImage platformBackground = createImage(1000, 800, ARGB);
+PImage platformSprite;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -25,8 +27,6 @@ PImage fireboyleft;
 PImage fireboyright;
 PImage fireboystill;
 PImage boostImg;
-
-
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -45,7 +45,7 @@ DiamondsGenerator genD3 = new DiamondsGenerator(3);
 Menu menu;
 
 boolean server = true;
-boolean levelDrawn, ready, firstInit;
+boolean levelDrawn, ready, firstInit, platformsRendered;
 int levelId;
 
 //LEVEL 1
@@ -213,6 +213,7 @@ void setup() {
 
   boostImg = loadImage("boostgrafik.png");
 
+  platformSprite = loadImage("assets/platform.png");
 }
 
 void draw() {
@@ -341,6 +342,8 @@ void draw() {
 
     sendNetworkData();
     recieveNetworkData();
+    renderPlatforms();
+    image(platformBackground, 0, 0);
   }
 }
 
@@ -496,6 +499,47 @@ void drawLevel(int lvl) {
   }
 
   levelDrawn = true;
+}
+
+void renderPlatforms() {
+  if (!platformsRendered) {
+    PImage pB = platformBackground;
+    PImage pBorig = platformSprite;
+
+    pB.loadPixels();
+    pBorig.loadPixels();
+
+    for (int i = 0; i < platforms.size(); i++) {
+      Platform p = platforms.get(i);
+
+
+      for (int u = 0; u > 800000; u++) {
+        pBorig.pixels[u] = color(255, 255, 255, 0);
+      }
+      //int startPixel = (int) p.xpos * (int) p.ypos;
+      for (float y = p.ypos; y < p.ypos + p.sizey; y++) {
+        for (float x = p.xpos; x < p.xpos+p.sizex; x++) {
+          int x_ = parseInt(x);
+          int y_ = parseInt(y);
+
+          pB.pixels[y_*width+x_] = pBorig.pixels[y_*width+x_];
+          if (y < p.ypos+5) {
+            pB.pixels[y_*width+x_] = color(#654321);
+          }
+        }
+      }
+      /*for (int y = 100; y < 150; y++) {
+       for (int x = 100; x < 150; x++) {
+       pBorig.pixels[y*width+x] = color(0, 90, 102);
+       println("XY: "+x,y);
+       }
+       }*/
+    }
+    //pB.updatePixels();
+    pBorig.updatePixels();
+
+    platformsRendered = true;
+  }
 }
 
 void handleWin() {
