@@ -11,8 +11,11 @@ int rows;
 PImage platformImg;
 PImage diamondred;
 PImage diamondblue;
-PImage dripBlue;
 PImage dripRed;
+PImage dripBlue;
+PImage platformRed;
+PImage platformBlue;
+PImage platformGreen;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -25,6 +28,7 @@ PImage fireboyleft;
 PImage fireboyright;
 PImage fireboystill;
 PImage boostImg;
+
 
 
 
@@ -208,8 +212,13 @@ void setup() {
   diamondred = loadImage("diamantred.png");
   diamondblue = loadImage("diamantblue.png");
 
-  dripBlue = loadImage("dripBlue.png");
   dripRed = loadImage("dripRed.png");
+  dripBlue = loadImage("dripBlue.png");
+  
+  platformRed = loadImage("platformRed.png");
+  platformBlue = loadImage("platformBlue.png");
+  platformGreen = loadImage("platformGreen.png");
+
 
   boostImg = loadImage("boostgrafik.png");
 
