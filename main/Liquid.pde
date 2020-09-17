@@ -20,7 +20,8 @@ class Liquid {
     if (state == 1) {
       noStroke();
       fill(0, 0, 255);
-      rect(x, y, w, hl);
+  //    rect(x, y, w, hl);
+      image(platformBlue,x,y,w,hl);
       stroke(0);
       fill(0);
       rect(x, yg, w, hg);
@@ -28,15 +29,18 @@ class Liquid {
     if (state == 2) {
       noStroke();
       fill(255, 0, 0);
-      rect(x, y, w, hl);
-      stroke(0);
-      fill(0);
-      rect(x, yg, w, hg);
+    //  rect(x, y, w, hl);
+    image(platformRed,x, y, w, hl);
+     stroke(0);
+     fill(0);
+     rect(x, yg, w, hg);
+     
     }
     if (state == 3) {
       noStroke();
       fill(0, 255, 0);
-      rect(x, y, w, hl);
+  //    rect(x, y, w, hl);
+      image(platformGreen,x,y,w,hl);
       stroke(0);
       fill(0);
       rect(x, yg, w, hg);
