@@ -25,11 +25,12 @@ class Drip {
       if (state == 1) {
       //  fill(0, 0, 255);
       //  ellipse(location.x, location.y, diameter, diameter);
-      image(dripBlue,location.x,location.y,diameter,diameter);
+      image(dripBlue,location.x,location.y,diameter+20,diameter+20);
       }
       if (state == 2) {
-        fill(255, 0, 0);
-        ellipse(location.x, location.y, diameter, diameter);
+    //    fill(255, 0, 0);
+      //  ellipse(location.x, location.y, diameter, diameter);
+      image(dripRed,location.x,location.y,diameter+20,diameter+20);
       }
       if (state == 3) {
         fill(0, 255, 0);
