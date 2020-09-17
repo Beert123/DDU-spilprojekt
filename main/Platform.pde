@@ -43,6 +43,8 @@ class Platform {
     //PImage c = platformImg.get(0, 0, 200, 40);
 
     if (booster) {
+      fill(255, 223, 0);
+      arc(xpos+sizex/2, ypos+sizey/2, 30, 30, 0, 2*PI-timeToBoost, PIE);
       image(boostImg, xpos+sizex/2-10, ypos+sizey/2-15, 20, 30);
       //fill(255, 223, 0);
       //arc(xpos+sizex/2, ypos+sizey/2, 15, 15, 0, 2*PI-timeToBoost, PIE);
