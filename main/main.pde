@@ -220,29 +220,22 @@ void setup() {
 
   dripRed = loadImage("dripRed.png");
   dripBlue = loadImage("dripBlue.png");
-  
+
   platformRed = loadImage("platformRed.png");
   platformBlue = loadImage("platformBlue.png");
   platformGreen = loadImage("platformGreen.png");
 
 
   boostImg = loadImage("boostgrafik.png");
-  
+
   doorred = loadImage("doorred.png");
   doorblue = loadImage("doorblue.png");
-
 }
 
 void draw() {
   //println(mouseX, mouseY);
-  if(wait){
-    lastTime = millis();
-  }
-  if(wait2){
-    lastTime2 = millis();
-  }
   println(millis() - lastTime);
-  
+
   if (!menu.ready) {
     menu.display();
     menu.knap();
@@ -364,6 +357,7 @@ void draw() {
         d.reset();
       }
     }
+    waitTimer();
 
     sendNetworkData();
     recieveNetworkData();
@@ -372,14 +366,14 @@ void draw() {
 
 void keyPressed() {
   /*if (key == 'n') {
-    levelId = 2;
-    clearLevel();
-  }*/
+   levelId = 2;
+   clearLevel();
+   }*/
 
   /*if (key == 'm') {
-    gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
-    println("gen");
-  }*/
+   gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+   println("gen");
+   }*/
   handlePress(keyCode, true);
 }
 
@@ -565,6 +559,9 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
+  
+  wait = true;
+  wait2 = true;
 
   background(255);
 
@@ -581,4 +578,12 @@ void clearLevel() {
 
   background(255);
   drawLevel(levelId);
+}
+void waitTimer(){
+  if (wait) {
+    lastTime = millis();
+  }
+  if (wait2) {
+    lastTime2 = millis();
+  }
 }

@@ -11,7 +11,6 @@ class Maal {
     bigness.x = bigX;
     bigness.y = bigY;
     state = s;
-    
   }
   void display() {
     if (state == 1) {
@@ -37,35 +36,47 @@ class Maal {
     // fra siden
     if (state == 1 && p == player1) {
       if (p.location.y+p.h > location.y+8 && p.location.y < location.y+bigness.y && p.location.x+p.w > location.x && p.location.x+p.w < location.x+10) {
-        sejr1 = true;
-      } else {
-        sejr1 = false;
+        wait = false;
+        if (millis() - lastTime > 1500) {
+          sejr1 = true;
+        } else {
+          sejr1 = false;
+        }
       }
       // fra siden
       if (p.location.y+p.h > location.y+8 && p.location.y < location.y+bigness.y && p.location.x < location.x+bigness.x && p.location.x > location.x+bigness.x-10) {
-        sejr1 = true;
-      } else {
-        sejr1 = false;
+        wait = false;
+        if (millis() - lastTime > 1500) {
+          sejr1 = true;
+        } else {
+          sejr1 = false;
+        }
       }
       //oppe fra og ned
       if (p.location.y+p.h > location.y && p.location.y <= location.y+8 && p.location.x+p.w > location.x && p.location.x < location.x+bigness.x && p.location.y+p.h < location.y+8) {
-        sejr1 = true;
-      } else {
-        sejr1 = false;
+        wait = false;
+        if (millis() - lastTime > 1500) {
+          sejr1 = true;
+        } else {
+          sejr1 = false;
+        }
       }
       //headbutt
       if (p.location.y < location.y+bigness.y && p.location.y > location.y && p.location.x+30 > location.x && p.location.x < location.x+bigness.x) {
-        sejr1 = true;
-      } else {
-        sejr1 = false;
+        wait = false;
+        if (millis() - lastTime > 1500) {
+          sejr1 = true;
+        } else {
+          sejr1 = false;
+        }
       }
     }
 
 
     if (state == 2 && p == player2) {
       if (p.location.y+p.h > location.y+8 && p.location.y < location.y+bigness.y && p.location.x+p.w > location.x && p.location.x+p.w < location.x+10) {
-        wait = false;
-        if (millis() - lastTime > 2000) {
+        wait2 = false;
+        if (millis() - lastTime2 > 1500) {
           sejr2 = true;
         } else {
           sejr2 = false;
@@ -73,8 +84,8 @@ class Maal {
       }
       // fra siden
       if (p.location.y+p.h > location.y+8 && p.location.y < location.y+bigness.y && p.location.x < location.x+bigness.x && p.location.x > location.x+bigness.x-10) {
-        wait = false;
-        if (millis() - lastTime > 2000) {
+        wait2 = false;
+        if (millis() - lastTime2 > 1500) {
           sejr2 = true;
         } else {
           sejr2 = false;
@@ -82,8 +93,8 @@ class Maal {
       }
       //oppe fra og ned
       if (p.location.y+p.h > location.y && p.location.y <= location.y+8 && p.location.x+p.w > location.x && p.location.x < location.x+bigness.x && p.location.y+p.h < location.y+8) {
-        wait = false;
-        if (millis() - lastTime > 2000) {
+        wait2 = false;
+        if (millis() - lastTime2 > 1500) {
           sejr2 = true;
         } else {
           sejr2 = false;
@@ -91,8 +102,8 @@ class Maal {
       }
       //headbutt
       if (p.location.y < location.y+bigness.y && p.location.y > location.y && p.location.x+30 > location.x && p.location.x < location.x+bigness.x) {
-        wait = false;
-        if (millis() - lastTime > 2000) {
+        wait2 = false;
+        if (millis() - lastTime2 > 1500) {
           sejr2 = true;
         } else {
           sejr2 = false;
