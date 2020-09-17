@@ -336,15 +336,15 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == 'n') {
+  /*if (key == 'n') {
     levelId = 2;
     clearLevel();
-  }
+  }*/
 
-  if (key == 'm') {
+  /*if (key == 'm') {
     gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
     println("gen");
-  }
+  }*/
   handlePress(keyCode, true);
 }
 
@@ -472,8 +472,8 @@ void drawLevel(int lvl) {
     buttons.add(new Button(650, 540, 15));
     buttons.add(new Button(300, 740, 19));
     buttons.add(new Button(300, 540, 19));
-    maal.add(new Maal(400, 25, 50, 50, 2));
     maal.add(new Maal(550, 25, 50, 50, 1));
+    maal.add(new Maal(400, 25, 50, 50, 2));
     drips.add(new Drip(200, 0, 20, 1, 100));
     drips.add(new Drip(800, 0, 20, 2, 100));
     //gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
