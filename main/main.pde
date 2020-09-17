@@ -1,6 +1,6 @@
 import processing.net.*;
 int level;
-Server s; 
+Server s;
 Client c;
 String input;
 float data[];
@@ -47,9 +47,9 @@ int[] y3 = {400, 400, 400, 420, 420, 460};
 int[] y4 = {550, 550, 550, 600, 600, 600};
 int[] y5 = {760, 670, 670, 760, 760, 760, 760, 760, 700};
 
-int[] x = {200, 300, 400};
-int[] y = {650, 650, 650};
-int[] t = {1, 2, 1};
+int[] x = {390, 690, 795, 30, 265, 665};
+int[] y = {680, 680, 225, 485, 350, 370};
+int[] t = {1, 2, 1, 2, 1, 2};
 
 //END LEVEL 1
 
@@ -76,6 +76,10 @@ int[] yy3 = {460, 540, 400, 540};
 int[] yy4 = {680, 680, 680, 680, 680, 680, 680, 680};
 int[] yy5 = {760, 760, 760, 760, 760, 700};
 
+int[] xx = {695, 290, 635, 285, 500, 410};
+int[] yy = {640, 640, 250, 250, 55, 55};
+int[] tt = {1, 2, 1, 2, 1, 2};
+
 // END LEVEL 2
 
 // LEVEL 3
@@ -101,6 +105,10 @@ int[] yyy3 = {400, 400, 240, 340, 400, 340, 240, 400, 400};
 int[] yyy4 = {560, 560, 480, 560, 560};
 int[] yyy5 = {760, 600, 760};
 
+int[] xxx = {100, 900, 375, 600, 60, 940};
+int[] yyy = {690, 690, 195, 195, 360, 360};
+int[] ttt = {2, 1, 2, 1, 2, 1};
+
 // END LEVEL 3
 
 
@@ -125,11 +133,12 @@ void setup() {
   //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
   genD.generateDiamonds(x, y, t, 3);
   firstInit = true;
-  
+
   platformImg = loadImage("platform.png");
 }
 
 void draw() {
+  println(mouseX, mouseY);
   if (!menu.ready) {
     menu.display();
     menu.knap();
@@ -211,6 +220,14 @@ void draw() {
       l.collision(player1);
       l.collision(player2);
     }
+
+    for (int i = 0; i < platforms.size(); i++) {
+      Platform p = platforms.get(i);
+
+      platforms.get(i).display();
+      platforms.get(i).collision(player1, i);
+      platforms.get(i).collision(player2, i);
+    }
     for (int i = 0; i < diamonds.size(); i++) {
       Diamond d = diamonds.get(i);
 
@@ -219,14 +236,6 @@ void draw() {
       d.collision(player2);
       //d.pointCollect(player1);
       //d.pointCollect(player2);
-    }
-
-    for (int i = 0; i < platforms.size(); i++) {
-      Platform p = platforms.get(i);
-
-      platforms.get(i).display();
-      platforms.get(i).collision(player1, i);
-      platforms.get(i).collision(player2, i);
     }
 
     player1.applyForce(gravity);
@@ -307,7 +316,7 @@ void recieveNetworkData() {
 
     c = s.available();
     if (c != null) {
-      input = c.readString(); 
+      input = c.readString();
       input = input.substring(0, input.indexOf("\n"));  // Only up to the newline
       data = float(split(input, ' '));  // Split values into an array
       // Draw line using received coords
@@ -323,8 +332,8 @@ void recieveNetworkData() {
       }
     }
   } else {
-    if (c.available() > 0) { 
-      input = c.readString(); 
+    if (c.available() > 0) {
+      input = c.readString();
       input = input.substring(0, input.indexOf("\n"));  // Only up to the newline
       data = float(split(input, ' '));  // Split values into an array
       // Draw line using received coords
@@ -369,6 +378,7 @@ void drawLevel(int lvl) {
     //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
     gen.loadFile("level1.txt");
     println("level 1!");
+    genD.generateDiamonds(x, y, t, 6);
 
     break;
   case 2:
@@ -378,10 +388,11 @@ void drawLevel(int lvl) {
     buttons.add(new Button(700, 90, 1));
     maal.add(new Maal(100, 50, 50, 50, 1));
     maal.add(new Maal(180, 50, 50, 50, 2));
-    drips.add(new Drip(100, 320, 20, 1, 550));
+    drips.add(new Drip(90, 150, 20, 1, 460));
     //gen2.generateLevel(ee1, ee2, ee3, ee4, ee5, ww1, ww2, ww3, ww4, ww5, hh1, hh2, hh3, hh4, hh5, yy1, yy2, yy3, yy4, yy5);
     gen2.loadFile("level2.txt");
     println("level 2!");
+    genD.generateDiamonds(xx, yy, tt, 6);
     break;
   case 3:
     buttons.add(new Button(650, 740, 15));
@@ -395,6 +406,7 @@ void drawLevel(int lvl) {
     //gen3.generateLevel(eee1, eee2, eee3, eee4, eee5, www1, www2, www3, www4, www5, hhh1, hhh2, hhh3, hhh4, hhh5, yyy1, yyy2, yyy3, yyy4, yyy5);
     gen3.loadFile("level3.txt");
     println("level 3!");
+    genD.generateDiamonds(xxx, yyy, ttt, 6);
 
     player1.location.set(440, 680);
     player2.location.set(530, 500);
@@ -413,7 +425,7 @@ void handleWin() {
   menu.levelId = 1;
 
   levelDrawn = false;
-  
+
   if (s != null) {
     s.stop();
   } else {
@@ -425,10 +437,10 @@ void handleWin() {
   buttons.clear();
   maal.clear();
   drips.clear();
-  
+
   player1.revive();
   player2.revive();
-  
+
   gen.x1 = 0;
   gen.x2 = 0;
   gen.x3 = 0;
@@ -444,9 +456,9 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
-  
+
   background(255);
-  
+
   println("handling win!");
 }
 
