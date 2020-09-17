@@ -361,8 +361,8 @@ void drawLevel(int lvl) {
     maal.add(new Maal(850, 50, 50, 50, 1));
     maal.add(new Maal(780, 50, 50, 50, 2));
     drips.add(new Drip(100, 320, 20, 1, 550));
-    gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
-
+    //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
+    gen.loadFile("level1.txt");
     println("level 1!");
 
     break;
