@@ -4,7 +4,9 @@ Server s;
 Client c;
 String input;
 float data[];
-PImage platformImg;
+PImage backgroundimage;
+int cols;
+int rows;
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
 ArrayList<Maal> maal = new ArrayList<Maal>();
@@ -134,7 +136,17 @@ void setup() {
   genD.generateDiamonds(x, y, t, 3);
   firstInit = true;
 
-  platformImg = loadImage("platform.png");
+  //platformImg = loadImage("platform4.png");
+
+  backgroundimage = loadImage("background.png");
+  cols = width/backgroundimage.width;
+  rows = height/backgroundimage.height;
+  if ( backgroundimage.width%width > 0) {
+    cols++;
+  }
+  if ( backgroundimage.height%height > 0) {
+    rows++;
+  }
 }
 
 void draw() {
@@ -166,7 +178,11 @@ void draw() {
   if (levelDrawn == true) {
 
     background(255);
-
+    for (int y=0; y<rows; y++) {
+      for (int x=0; x<cols; x++) {
+        image(backgroundimage, x*backgroundimage.width, y*backgroundimage.height);
+      }
+    }
     //println(player1.point);
     //println(player2.point);
 
@@ -429,7 +445,7 @@ void handleWin() {
   if (s != null) {
     s.stop();
   } else {
-  c.stop();
+    c.stop();
   }
 
   platforms.clear();
