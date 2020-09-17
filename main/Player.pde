@@ -52,8 +52,9 @@ class Player {
       }
 
       if (hasBoost) {
-        fill(255, 223, 0);
-        ellipse(location.x+40, location.y+20, 15, 15);
+        //fill(255, 223, 0);
+        //ellipse(location.x+40, location.y+20, 15, 15);
+        image(boostImg, location.x+30, location.y+20-15, 20, 30);
         fill(playerColor);
       }
 

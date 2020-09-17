@@ -21,6 +21,7 @@ PImage watergirlstill;
 PImage fireboyleft;
 PImage fireboyright;
 PImage fireboystill;
+PImage boostImg;
 
 
 ArrayList<Platform> platforms = new ArrayList<Platform>();
@@ -202,6 +203,7 @@ void setup() {
 
   diamondred = loadImage("diamantred.png");
   diamondblue = loadImage("diamantblue.png");
+  boostImg = loadImage("boostgrafik.png");
 }
 
 void draw() {
