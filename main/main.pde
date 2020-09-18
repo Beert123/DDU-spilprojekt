@@ -323,7 +323,8 @@ void draw() {
       l.collision(player1);
       l.collision(player2);
     }
-
+    renderPlatforms();
+    image(platformBackground, 0, 0);
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
@@ -331,6 +332,7 @@ void draw() {
       platforms.get(i).collision(player1, i);
       platforms.get(i).collision(player2, i);
     }
+
     for (int i = 0; i < diamonds.size(); i++) {
       Diamond d = diamonds.get(i);
 
@@ -363,8 +365,6 @@ void draw() {
 
     sendNetworkData();
     recieveNetworkData();
-    renderPlatforms();
-    image(platformBackground, 0, 0);
   }
 }
 
@@ -523,20 +523,17 @@ void drawLevel(int lvl) {
 }
 
 void renderPlatforms() {
-  if (!platformsRendered) {
-    PImage pB = platformBackground;
-    PImage pBorig = platformSprite;
+  println("rendering");
+  PImage pB = platformBackground;
+  PImage pBorig = platformSprite;
 
-    pB.loadPixels();
-    pBorig.loadPixels();
+  pB.loadPixels();
+  pBorig.loadPixels();
+  for (int i = 0; i < platforms.size(); i++) {
+    Platform p = platforms.get(i);
 
-    for (int i = 0; i < platforms.size(); i++) {
-      Platform p = platforms.get(i);
+    if (!p.elevator) {
 
-
-      for (int u = 0; u > 800000; u++) {
-        pBorig.pixels[u] = color(255, 255, 255, 0);
-      }
       //int startPixel = (int) p.xpos * (int) p.ypos;
       for (float y = p.ypos; y < p.ypos + p.sizey; y++) {
         for (float x = p.xpos; x < p.xpos+p.sizex; x++) {
@@ -556,11 +553,9 @@ void renderPlatforms() {
        }
        }*/
     }
-    //pB.updatePixels();
-    pBorig.updatePixels();
-
-    platformsRendered = true;
   }
+  pB.updatePixels();
+  pBorig.updatePixels();
 }
 
 void handleWin() {
@@ -578,6 +573,16 @@ void handleWin() {
   } else {
     c.stop();
   }
+
+  PImage pB = platformBackground;
+
+  pB.loadPixels();
+
+  for (int u = 0; u < 800000; u++) {
+    pB.pixels[u] = color(0, 0, 0, 0);
+  }
+
+  pB.updatePixels();
 
   platforms.clear();
   liquids.clear();
@@ -624,7 +629,7 @@ void clearLevel() {
   background(255);
   drawLevel(levelId);
 }
-void waitTimer(){
+void waitTimer() {
   if (wait) {
     lastTime = millis();
   }

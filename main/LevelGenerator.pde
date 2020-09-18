@@ -11,9 +11,9 @@ class LevelGenerator {
   void loadFile(String fileName) {
     String[] lines = loadStrings(fileName);
     println("Loading level file " + fileName + " with " + lines.length + " lines!");
-    
+
     parsedData = new int[lines.length][lines.length];
-    
+
     for (int i = 0; i < lines.length; i++) {
       println(lines[i]);
       String[] buffer = split(lines[i], ',');
@@ -41,7 +41,7 @@ class LevelGenerator {
     for (int i = 0; i < e1.length; i++) {
       switch(e1[i]) {
       case 1:
-        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], false));
+        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], false, false));
         break;
       case 2:
         liquids.add(new Liquid(x1, y1[i], w1[i], h1[i], 1));
@@ -53,10 +53,13 @@ class LevelGenerator {
         liquids.add(new Liquid(x1, y1[i], w1[i], h1[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], true));
+        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], true, false));
         break;
       case 7:
-        platforms.add(new Platform(x1, y1[i], 100, 200, w1[i], h1[i], true));
+        platforms.add(new Platform(x1, y1[i], 100, 200, w1[i], h1[i], true, false));
+        break;
+      case 8:
+        platforms.add(new Platform(x1, y1[i], 0, 1, w1[i], h1[i], false, true));
         break;
       }
       x1 = x1+w1[i];
@@ -64,7 +67,7 @@ class LevelGenerator {
     for (int i = 0; i < e2.length; i++) {
       switch(e2[i]) {
       case 1:
-        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], false));
+        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], false, false));
         break;
       case 2:
         liquids.add(new Liquid(x2, y2[i], w2[i], h2[i], 1));
@@ -76,10 +79,13 @@ class LevelGenerator {
         liquids.add(new Liquid(x2, y2[i], w2[i], h2[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], true));
+        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], true, false));
         break;
       case 7:
-        platforms.add(new Platform(x2, y2[i], 50, 200, w2[i], h2[i], false));
+        platforms.add(new Platform(x2, y2[i], 50, 200, w2[i], h2[i], false, false));
+        break;
+      case 8:
+        platforms.add(new Platform(x2, y2[i], 0, 1, w2[i], h2[i], false, true));
         break;
       }
       x2 = x2+w2[i];
@@ -87,7 +93,7 @@ class LevelGenerator {
     for (int i = 0; i < e3.length; i++) {
       switch(e3[i]) {
       case 1:
-        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false, false));
         break;
       case 2:
         liquids.add(new Liquid(x3, y3[i], w3[i], h3[i], 1));
@@ -99,13 +105,16 @@ class LevelGenerator {
         liquids.add(new Liquid(x3, y3[i], w3[i], h3[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], true));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], true, false));
         break;
       case 6:
-        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false));
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false, false));
         break;
       case 7:
-        platforms.add(new Platform(x3, y3[i], 100, 200, w3[i], h3[i], false));
+        platforms.add(new Platform(x3, y3[i], 100, 200, w3[i], h3[i], false, false));
+        break;
+      case 8:
+        platforms.add(new Platform(x3, y3[i], 0, 1, w3[i], h3[i], false, true));
         break;
       }
       x3 = x3+w3[i];
@@ -113,7 +122,7 @@ class LevelGenerator {
     for (int i = 0; i < e4.length; i++) {
       switch(e4[i]) {
       case 1:
-        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false));
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false, false));
         break;
       case 2:
         liquids.add(new Liquid(x4, y4[i], w4[i], h4[i], 1));
@@ -125,13 +134,16 @@ class LevelGenerator {
         liquids.add(new Liquid(x4, y4[i], w4[i], h4[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], true));
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], true, false));
         break;
       case 6:
-        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false));
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false, false));
         break;
       case 7:
-        platforms.add(new Platform(x4, y4[i], 100, 200, w4[i], h4[i], false));
+        platforms.add(new Platform(x4, y4[i], 100, 200, w4[i], h4[i], false, false));
+        break;
+      case 8:
+        platforms.add(new Platform(x4, y4[i], 0, 1, w4[i], h4[i], false, true));
         break;
       }
       x4 = x4+w4[i];
@@ -139,7 +151,7 @@ class LevelGenerator {
     for (int i = 0; i < e5.length; i++) {
       switch(e5[i]) {
       case 1:
-        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false));
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false, false));
         break;
       case 2:
         liquids.add(new Liquid(x5, y5[i], w5[i], h5[i], 1));
@@ -151,13 +163,16 @@ class LevelGenerator {
         liquids.add(new Liquid(x5, y5[i], w5[i], h5[i], 3));
         break;
       case 5:
-        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], true));
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], true, false));
         break;
       case 6:
-        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false));
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false, false));
         break;
       case 7:
-        platforms.add(new Platform(x5, y5[i], 100, 200, w5[i], h5[i], false));
+        platforms.add(new Platform(x5, y5[i], 100, 200, w5[i], h5[i], false, false));
+        break;
+      case 8:
+        platforms.add(new Platform(x5, y5[i], 0, 1, w5[i], h5[i], false, true));
         break;
       }
       x5 = x5+w5[i];
