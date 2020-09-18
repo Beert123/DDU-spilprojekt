@@ -19,12 +19,14 @@ PImage dripRed;
 PImage platformBackground = createImage(1000, 800, ARGB);
 PImage platformSprite;
 
+
 PImage dripBlue;
 PImage doorred;
 PImage doorblue;
 PImage platformRed;
 PImage platformBlue;
 PImage platformGreen;
+PImage grafikKnap;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -56,7 +58,7 @@ EndScreen endScreen;
 Menu menu;
 
 boolean server = true;
-boolean levelDrawn, ready, firstInit, platformsRendered, wait, wait2;
+boolean levelDrawn, ready, firstInit, isRendered, wait, wait2;
 int levelId;
 
 //LEVEL 1
@@ -236,6 +238,10 @@ void setup() {
 
   doorred = loadImage("doorred.png");
   doorblue = loadImage("doorblue.png");
+
+  grafikKnap = loadImage("grafikKnap.png");
+
+  isRendered = false;
 }
 
 void draw() {
@@ -332,7 +338,8 @@ void draw() {
       l.collision(player1);
       l.collision(player2);
     }
-
+    renderPlatforms();
+    image(platformBackground, 0, 0);
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
@@ -340,6 +347,7 @@ void draw() {
       platforms.get(i).collision(player1, i);
       platforms.get(i).collision(player2, i);
     }
+
     for (int i = 0; i < diamonds.size(); i++) {
       Diamond d = diamonds.get(i);
 
@@ -372,8 +380,6 @@ void draw() {
 
     sendNetworkData();
     recieveNetworkData();
-    renderPlatforms();
-    image(platformBackground, 0, 0);
   }
 }
 
@@ -443,6 +449,7 @@ void recieveNetworkData() {
         if (abs(data[0] - p2.location.x) < 50) {
           p2.location.x = data[0];
           p2.location.y = data[1];
+          //p2.hasBoost = parseBoolean((int)data[2]);
         }
       }
     }
@@ -458,6 +465,7 @@ void recieveNetworkData() {
         if (abs(data[0] - p1.location.x) < 50) {
           p1.location.x = data[0];
           p1.location.y = data[1];
+          //p1.hasBoost = parseBoolean((int) data[2]);
         }
       }
     }
@@ -532,43 +540,41 @@ void drawLevel(int lvl) {
 }
 
 void renderPlatforms() {
-  if (!platformsRendered) {
+  if (!isRendered) {
+    println("rendering");
     PImage pB = platformBackground;
     PImage pBorig = platformSprite;
 
     pB.loadPixels();
     pBorig.loadPixels();
-
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
+      if (!p.elevator) {
 
-      for (int u = 0; u > 800000; u++) {
-        pBorig.pixels[u] = color(255, 255, 255, 0);
-      }
-      //int startPixel = (int) p.xpos * (int) p.ypos;
-      for (float y = p.ypos; y < p.ypos + p.sizey; y++) {
-        for (float x = p.xpos; x < p.xpos+p.sizex; x++) {
-          int x_ = parseInt(x);
-          int y_ = parseInt(y);
+        //int startPixel = (int) p.xpos * (int) p.ypos;
+        for (float y = p.ypos; y < p.ypos + p.sizey; y++) {
+          for (float x = p.xpos; x < p.xpos+p.sizex; x++) {
+            int x_ = parseInt(x);
+            int y_ = parseInt(y);
 
-          pB.pixels[y_*width+x_] = pBorig.pixels[y_*width+x_];
-          if (y < p.ypos+5) {
-            pB.pixels[y_*width+x_] = color(#654321);
+            pB.pixels[y_*width+x_] = pBorig.pixels[y_*width+x_];
+            if (y < p.ypos+5) {
+              pB.pixels[y_*width+x_] = color(#654321);
+            }
           }
         }
+        /*for (int y = 100; y < 150; y++) {
+         for (int x = 100; x < 150; x++) {
+         pBorig.pixels[y*width+x] = color(0, 90, 102);
+         println("XY: "+x,y);
+         }
+         }*/
       }
-      /*for (int y = 100; y < 150; y++) {
-       for (int x = 100; x < 150; x++) {
-       pBorig.pixels[y*width+x] = color(0, 90, 102);
-       println("XY: "+x,y);
-       }
-       }*/
     }
-    //pB.updatePixels();
+    pB.updatePixels();
     pBorig.updatePixels();
-
-    platformsRendered = true;
+    isRendered = true;
   }
 }
 
@@ -589,6 +595,17 @@ void handleWin() {
   } else {
     c.stop();
   }
+
+  PImage pB = platformBackground;
+
+  pB.loadPixels();
+
+  for (int u = 0; u < 800000; u++) {
+    pB.pixels[u] = color(0, 0, 0, 0);
+  }
+
+  pB.updatePixels();
+  isRendered = false;
 
   platforms.clear();
   liquids.clear();

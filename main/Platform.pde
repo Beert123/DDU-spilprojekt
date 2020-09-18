@@ -4,12 +4,13 @@ class Platform {
   float sizex, sizey;
   float period;
   float amplitude;
-  boolean booster, down;
+  boolean booster, down, elevator, mover;
   float timeToBoost, isBox;
+  PImage background = createImage((int)sizex, (int)sizey, RGB);
 
   int player;
 
-  Platform(float x, float y, float a, float p, float sx, float sy, boolean boost) {
+  Platform(float x, float y, float a, float p, float sx, float sy, boolean boost, boolean e, boolean m) {
     amplitude = a;
     period = p;
     xpos = x;
@@ -20,6 +21,8 @@ class Platform {
     booster = boost;
     down = false;
     maxdown = ypos+121;
+    elevator = e;
+    mover = m;
   }
 
   void down() {
@@ -28,7 +31,7 @@ class Platform {
       //println("down");
     }
   }
-  
+
   void up() {
     if (ypos > yposdef) {
       ypos--;
@@ -39,7 +42,17 @@ class Platform {
     xmove = amplitude * cos(TWO_PI * frameCount/period);
     noStroke();
     fill(139, 69, 19);
-    rect(xpos+xmove, ypos, sizex, sizey);
+    if (elevator || amplitude > 1) {
+
+      fill(0);
+      rect(xpos+xmove, ypos, sizex, sizey);
+      fill(197, 197, 197);
+      rect(xpos+xmove+3, ypos+3, sizex-6, sizey-6);
+      fill(0);
+      rect(xpos+xmove+10, ypos+10, sizex-20, sizey-20);
+      fill(114, 7, 116);
+      rect(xpos+xmove+13, ypos+13, sizex-26, sizey-26);
+    }
     //PImage c = platformImg.get(0, 0, 200, 40);
 
     if (booster) {
@@ -76,7 +89,7 @@ class Platform {
       p.velocity.set(0, 0);
 
       if (booster && timeToBoost < 0.01) {
-          p.hasBoost = true;
+        p.hasBoost = true;
         timeToBoost = 2*PI;
       }
     }
