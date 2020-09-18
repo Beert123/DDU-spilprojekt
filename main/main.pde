@@ -338,7 +338,8 @@ void draw() {
       l.collision(player1);
       l.collision(player2);
     }
-
+    image(platformBackground, 0, 0);
+    
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
@@ -379,7 +380,6 @@ void draw() {
 
     sendNetworkData();
     recieveNetworkData();
-    image(platformBackground, 0, 0);
   }
 }
 
