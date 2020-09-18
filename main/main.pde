@@ -477,9 +477,9 @@ void sendNetworkData() {
   Player p2 = player2;
 
   if (menu.offline) {
-    s.write(p1.location.x + " " + p1.location.y + " " + str(p1.hasBoost) + "\n");
+    s.write(p1.location.x + " " + p1.location.y + " " + p1.hasBoost + "\n");
   } else {
-    c.write(p2.location.x + " " + p2.location.y + " " + str(p2.hasBoost) + "\n");
+    c.write(p2.location.x + " " + p2.location.y + " " + p2.hasBoost + "\n");
   }
 }
 
