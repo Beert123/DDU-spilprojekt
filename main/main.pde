@@ -442,7 +442,7 @@ void recieveNetworkData() {
         if (abs(data[0] - p2.location.x) < 50) {
           p2.location.x = data[0];
           p2.location.y = data[1];
-          p2.hasBoost = parseBoolean((int)data[2]);
+          //p2.hasBoost = parseBoolean((int)data[2]);
         }
       }
     }
@@ -458,7 +458,7 @@ void recieveNetworkData() {
         if (abs(data[0] - p1.location.x) < 50) {
           p1.location.x = data[0];
           p1.location.y = data[1];
-          p1.hasBoost = parseBoolean((int) data[2]);
+          //p1.hasBoost = parseBoolean((int) data[2]);
         }
       }
     }
@@ -470,17 +470,9 @@ void sendNetworkData() {
   Player p2 = player2;
 
   if (menu.offline) {
-    int hb = 0;
-    if (p1.hasBoost) {
-      hb = 1;
-    }
-    s.write(p1.location.x + " " + p1.location.y + " " + hb + "\n");
+    s.write(p1.location.x + " " + p1.location.y + "\n");
   } else {
-    int hb = 0;
-    if (p2.hasBoost) {
-      hb = 1;
-    }
-    c.write(p2.location.x + " " + p2.location.y + " " + hb + "\n");
+    c.write(p2.location.x + " " + p2.location.y + "\n");
   }
 }
 
