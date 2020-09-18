@@ -587,7 +587,7 @@ void handleWin() {
   menu.lvl1c = false;
   menu.lvl2c = false;
   menu.lvl3c = false;
-  menu.rc = false;
+  //menu.rc = false;
   menu.levelId = 1;
 
   levelDrawn = false;
