@@ -339,7 +339,7 @@ void draw() {
       l.collision(player2);
     }
     image(platformBackground, 0, 0);
-    
+
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
@@ -450,6 +450,12 @@ void recieveNetworkData() {
           p2.location.x = data[0];
           p2.location.y = data[1];
           p2.hasBoost = boolean(str(data[2]));
+          if (p2.location.x - data[0] > 0) {
+            p2.isLeft = true;
+          }
+          if (p2.location.x - data[0] < 0) {
+            p2.isRight = true;
+          }
         }
       }
     }
@@ -466,6 +472,12 @@ void recieveNetworkData() {
           p1.location.x = data[0];
           p1.location.y = data[1];
           p1.hasBoost = boolean(str(data[2]));
+          if (p1.location.x - data[0] > 0) {
+            p1.isLeft = true;
+          }
+          if (p1.location.x - data[0] < 0) {
+            p1.isRight = true;
+          }
         }
       }
     }
@@ -581,7 +593,7 @@ void renderPlatforms() {
 }
 
 void handleWin() {
-  
+
   endScreen.EndScreenDone = false;
   endScreen.nc = false;
   menu.ready = false;
@@ -632,7 +644,7 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
-  
+
   m = millis();
 
   wait = true;
