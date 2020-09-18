@@ -4,13 +4,13 @@ class Platform {
   float sizex, sizey;
   float period;
   float amplitude;
-  boolean booster, down, elevator;
+  boolean booster, down, elevator, mover;
   float timeToBoost, isBox;
   PImage background = createImage((int)sizex, (int)sizey, RGB);
 
   int player;
 
-  Platform(float x, float y, float a, float p, float sx, float sy, boolean boost, boolean e) {
+  Platform(float x, float y, float a, float p, float sx, float sy, boolean boost, boolean e, boolean m) {
     amplitude = a;
     period = p;
     xpos = x;
@@ -22,6 +22,7 @@ class Platform {
     down = false;
     maxdown = ypos+121;
     elevator = e;
+    mover = m;
   }
 
   void down() {
@@ -41,7 +42,7 @@ class Platform {
     xmove = amplitude * cos(TWO_PI * frameCount/period);
     noStroke();
     fill(139, 69, 19);
-    if (elevator) {
+    if (elevator || amplitude > 1) {
 
       fill(0);
       rect(xpos+xmove, ypos, sizex, sizey);
