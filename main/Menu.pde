@@ -26,8 +26,6 @@ class Menu {
     c5 = 255;
     c6 = 255;
     offline = true;
-
-    levelId = 3;
   }
 
   void display() {

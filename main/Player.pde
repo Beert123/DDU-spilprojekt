@@ -151,6 +151,8 @@ class Player {
     point = 0;
     inLiquid = false;
     isAlive = true;
+    wait = true;
+    wait2 = true;
     if (menu.levelId == 1) {
       location.set(x, y);
     }

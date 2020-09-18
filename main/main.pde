@@ -246,7 +246,7 @@ void setup() {
 
 void draw() {
   //println(mouseX, mouseY);
-  println(millis() - lastTime);
+  //println(millis() - lastTime);
 
   if (!menu.ready) {
     menu.display();
@@ -284,8 +284,8 @@ void draw() {
         image(backgroundimage, x*backgroundimage.width, y*backgroundimage.height);
       }
     }
-    //println(player1.point);
-    //println(player2.point);
+    println(player1.point);
+    println(player2.point);
 
     for (int i = 0; i < buttons.size(); i++) {
       Button b = buttons.get(i);
@@ -495,8 +495,8 @@ void drawLevel(int lvl) {
   case 1:
     buttons.add(new Button(650, 400, 8));
     buttons.add(new Button(780, 260, 8));
-    maal.add(new Maal(450, 650, 90, 90, 1));
-    maal.add(new Maal(500, 650, 90, 90, 2));
+    maal.add(new Maal(900, 30, 90, 90, 1));
+    maal.add(new Maal(800, 30, 90, 90, 2));
     drips.add(new Drip(100, 320, 20, 1, 550));
     //gen.generateLevel(e1, e2, e3, e4, e5, w1, w2, w3, w4, w5, h1, h2, h3, h4, h5, y1, y2, y3, y4, y5);
     gen.loadFile("level1.txt");
@@ -581,6 +581,7 @@ void renderPlatforms() {
 }
 
 void handleWin() {
+  
   endScreen.EndScreenDone = false;
   endScreen.nc = false;
   menu.ready = false;
@@ -588,7 +589,7 @@ void handleWin() {
   menu.lvl2c = false;
   menu.lvl3c = false;
   //menu.rc = false;
-  menu.levelId = 1;
+  //menu.levelId = 1;
 
   levelDrawn = false;
 
@@ -616,9 +617,6 @@ void handleWin() {
   drips.clear();
   diamonds.clear();
 
-  player1.revive();
-  player2.revive();
-
   gen.x1 = 0;
   gen.x2 = 0;
   gen.x3 = 0;
@@ -634,7 +632,7 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
-
+  
   m = millis();
 
   wait = true;
@@ -656,6 +654,7 @@ void clearLevel() {
   background(255);
   drawLevel(levelId);
 }
+
 void waitTimer() {
   if (wait) {
     lastTime = millis();
