@@ -17,12 +17,14 @@ PImage dripRed;
 PImage platformBackground = createImage(1000, 800, ARGB);
 PImage platformSprite;
 
+
 PImage dripBlue;
 PImage doorred;
 PImage doorblue;
 PImage platformRed;
 PImage platformBlue;
 PImage platformGreen;
+PImage grafikKnap;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -232,6 +234,8 @@ void setup() {
 
   doorred = loadImage("doorred.png");
   doorblue = loadImage("doorblue.png");
+  
+  grafikKnap = loadImage("grafikKnap.png");
 }
 
 void draw() {
