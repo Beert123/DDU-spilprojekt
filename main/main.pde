@@ -446,7 +446,7 @@ void recieveNetworkData() {
       println("RECIEVE: "+input);
 
       if (data != null) {
-        if (abs(data[0] - p2.location.x) < 50) {
+        if (true) {
 
           if (p2.location.x - data[0] > 0) {
             p2.isLeft = true;
@@ -469,7 +469,7 @@ void recieveNetworkData() {
 
       println("RECIEVE: "+data[0]+","+data[1]);
       if (data != null) {
-        if (abs(data[0] - p1.location.x) < 50) {
+        if (true) {
           if (p1.location.x - data[0] > 0) {
             p1.isLeft = true;
           }
