@@ -9,6 +9,8 @@ int cols;
 int rows;
 int lastTime = millis();
 int lastTime2 = millis();
+int m;
+int runTime;
 
 PImage platformImg;
 PImage diamondred;
@@ -471,10 +473,10 @@ void sendNetworkData() {
 }
 
 void timer() {
-  int m = millis();
+  runTime = millis() - m;
   fill(159, 11, 10);
   textSize(50);
-  text(m/1000, 40, 40);
+  text(runTime/1000, 40, 40);
 }
 
 void drawLevel(int lvl) {
@@ -608,6 +610,8 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
+  
+  m = millis();
 
   wait = true;
   wait2 = true;
