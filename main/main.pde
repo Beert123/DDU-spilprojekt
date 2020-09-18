@@ -9,6 +9,8 @@ int cols;
 int rows;
 int lastTime = millis();
 int lastTime2 = millis();
+int m;
+int runTime;
 
 PImage platformImg;
 PImage diamondred;
@@ -17,12 +19,14 @@ PImage dripRed;
 PImage platformBackground = createImage(1000, 800, ARGB);
 PImage platformSprite;
 
+
 PImage dripBlue;
 PImage doorred;
 PImage doorblue;
 PImage platformRed;
 PImage platformBlue;
 PImage platformGreen;
+PImage grafikKnap;
 
 PImage[] sprites1 = new PImage[2*2];
 PImage[] sprites2 = new PImage[2*2];
@@ -232,6 +236,8 @@ void setup() {
 
   doorred = loadImage("doorred.png");
   doorblue = loadImage("doorblue.png");
+  
+  grafikKnap = loadImage("grafikKnap.png");
 }
 
 void draw() {
@@ -467,10 +473,10 @@ void sendNetworkData() {
 }
 
 void timer() {
-  int m = millis();
+  runTime = millis() - m;
   fill(159, 11, 10);
   textSize(50);
-  text(m/1000, 40, 40);
+  text(runTime/1000, 40, 40);
 }
 
 void drawLevel(int lvl) {
@@ -609,6 +615,8 @@ void handleWin() {
   gen3.x3 = 0;
   gen3.x4 = 0;
   gen3.x5 = 0;
+  
+  m = millis();
 
   wait = true;
   wait2 = true;

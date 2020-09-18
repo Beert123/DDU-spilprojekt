@@ -11,7 +11,8 @@ class Button {
 
   void display() {
     fill(255, 255, 0);
-    rect(location.x, location.y, 50, 20);
+//    rect(location.x, location.y, 50, 20);
+ image(grafikKnap,location.x,location.y-10,50,30);
   }
 
   void checkStep() {
