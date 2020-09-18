@@ -447,15 +447,16 @@ void recieveNetworkData() {
 
       if (data != null) {
         if (abs(data[0] - p2.location.x) < 50) {
-          p2.location.x = data[0];
-          p2.location.y = data[1];
-          p2.hasBoost = boolean(str(data[2]));
+
           if (p2.location.x - data[0] > 0) {
             p2.isLeft = true;
           }
           if (p2.location.x - data[0] < 0) {
             p2.isRight = true;
           }
+          p2.location.x = data[0];
+          p2.location.y = data[1];
+          p2.hasBoost = boolean(str(data[2]));
         }
       }
     }
@@ -469,15 +470,15 @@ void recieveNetworkData() {
       println("RECIEVE: "+data[0]+","+data[1]);
       if (data != null) {
         if (abs(data[0] - p1.location.x) < 50) {
-          p1.location.x = data[0];
-          p1.location.y = data[1];
-          p1.hasBoost = boolean(str(data[2]));
           if (p1.location.x - data[0] > 0) {
             p1.isLeft = true;
           }
           if (p1.location.x - data[0] < 0) {
             p1.isRight = true;
           }
+          p1.location.x = data[0];
+          p1.location.y = data[1];
+          p1.hasBoost = boolean(str(data[2]));
         }
       }
     }
