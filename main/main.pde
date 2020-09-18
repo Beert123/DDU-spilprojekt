@@ -338,8 +338,7 @@ void draw() {
       l.collision(player1);
       l.collision(player2);
     }
-    renderPlatforms();
-    image(platformBackground, 0, 0);
+
     for (int i = 0; i < platforms.size(); i++) {
       Platform p = platforms.get(i);
 
@@ -380,6 +379,7 @@ void draw() {
 
     sendNetworkData();
     recieveNetworkData();
+    image(platformBackground, 0, 0);
   }
 }
 
@@ -502,7 +502,7 @@ void drawLevel(int lvl) {
     gen.loadFile("level1.txt");
     println("level 1!");
     genD.generateDiamonds(x, y, t, 6);
-
+    renderPlatforms();
     break;
   case 2:
     buttons.add(new Button(180, 520, 14));
@@ -516,6 +516,7 @@ void drawLevel(int lvl) {
     gen2.loadFile("level2.txt");
     println("level 2!");
     genD2.generateDiamonds(xx, yy, tt, 6);
+    renderPlatforms();
     break;
   case 3:
     buttons.add(new Button(650, 740, 15));
@@ -530,6 +531,7 @@ void drawLevel(int lvl) {
     gen3.loadFile("level3.txt");
     println("level 3!");
     genD3.generateDiamonds(xxx, yyy, ttt, 6);
+    renderPlatforms();
 
     player1.location.set(440, 680);
     player2.location.set(530, 500);
